@@ -1,0 +1,22 @@
+name: Github Pages Overwriter
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      
+      - name: List folders
+        run: ls
+        
+      - name: Publish current workdir (which contains generated content) to GitHub Pages
+        uses: rayluo/github-pages-overwriter@v1.3
+        with:
+          source-directory: index
+          target-branch: gh-pages
