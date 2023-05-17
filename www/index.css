@@ -1,0 +1,62 @@
+
+:root {
+    --floor-pos-y: 80%;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    justify-items: center;
+    align-items: center;
+}
+
+#background {
+    position: relative;
+    width: 1200px;
+    height: 800px;
+    border: 2px black solid;
+}
+
+.floor-entity {
+    --floor-entity-pos-y: var(--floor-pos-y);
+    width: min-content;
+    position: absolute;
+    top: var(--floor-entity-pos-y);
+    border: 2px purple solid;
+}
+
+#dino {
+    width: 100px;
+    left: 50%;
+    /* animation: dino-jump 0.4s ease infinite; */
+}
+
+#dino > img {
+    width: 100px;
+}
+
+#dino > .hitbox {
+    border: 2px yellow solid;
+}
+
+.tumbleweed {
+}
+
+.tumbleweed > img {
+    width: 100px;
+}
+
+@keyframes dino-jump {
+    0% {
+        top: var(--floor-entity-pos-y);
+    }
+    50% {
+        top: calc(var(--floor-entity-pos-y) - 100px);
+    }
+    100% {
+        top: var(--floor-entity-pos-y);
+    }
+}
