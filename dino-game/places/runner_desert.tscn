@@ -1,14 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvdkjwrorr7dv"]
+[gd_scene load_steps=5 format=3 uid="uid://dvdkjwrorr7dv"]
 
 [ext_resource type="PackedScene" uid="uid://bfmowkok52xsw" path="res://entities/dino.tscn" id="1_5rfpc"]
+[ext_resource type="Script" path="res://places/MilkCounter.gd" id="1_7yuou"]
+[ext_resource type="PackedScene" uid="uid://d4mbsh1rkokse" path="res://entities/milk.tscn" id="2_3dhbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
 size = Vector2(4550, 20)
 
 [node name="RunnerDesert" type="Node2D"]
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 224.0
+offset_top = 233.0
+offset_right = 492.0
+offset_bottom = 273.0
+
+[node name="MilkCollected" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Milk Collected: "
+
+[node name="MilkCounter" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_7yuou")
+
 [node name="Dino" parent="." instance=ExtResource("1_5rfpc")]
 position = Vector2(587, 603)
+
+[node name="Milk" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(702, 579)
+
+[node name="Milk2" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(297, 568)
+
+[node name="Milk3" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(831, 590)
+
+[node name="Milk4" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(364, 499)
+
+[node name="Milk5" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(782, 538)
+
+[node name="Milk6" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(442, 579)
+
+[node name="Milk7" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(576, 526)
+
+[node name="Milk8" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(364, 590)
+
+[node name="Milk9" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(273, 515)
+
+[node name="Milk10" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(433, 504)
+
+[node name="Milk11" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(847, 515)
+
+[node name="Milk12" parent="." instance=ExtResource("2_3dhbh")]
+position = Vector2(655, 515)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(587, 637)

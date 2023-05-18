@@ -99,6 +99,13 @@ shape = SubResource("RectangleShape2D_psjqx")
 sprite_frames = SubResource("SpriteFrames_202op")
 animation = &"idling"
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.75)
+shape = SubResource("RectangleShape2D_psjqx")
+
 [node name="DieAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_461xi")
 
