@@ -34,13 +34,18 @@ func jump():
 	$JumpAudio.play()
 	
 func move(direction):
+	running = false
+	crouching = false
+	
 	if direction:
 		velocity.x = direction * SPEED
+		running = true
 		
-		$AnimatedSprite2D.flip_h = direction < 0
+		$AnimatedSprite2D.flip_h = direction < 0		
 		
 		if Input.is_action_pressed("player.crouch"):
 			$AnimatedSprite2D.play("crouching")
+			crouching = true
 		else:
 			$AnimatedSprite2D.play("running")
 	else:
@@ -49,8 +54,22 @@ func move(direction):
 		if Input.is_action_pressed("player.crouch"):
 			$AnimatedSprite2D.animation = "crouching"
 			$AnimatedSprite2D.frame = 0
+			crouching = true
 		else:
 			$AnimatedSprite2D.play("idling")
+	
+	if crouching:
+		if running:
+			$AnimatedSprite2D.play("crouching")
+			$StandingCollision.disabled = true
+			$CrouchingCollision.disabled = false
+		else:
+			$AnimatedSprite2D.animation = "crouching"
+			$AnimatedSprite2D.frame = 0
+	else:
+		$StandingCollision.disabled = false
+		$CrouchingCollision.disabled = true
+
 
 		
 
