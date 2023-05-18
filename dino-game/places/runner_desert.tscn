@@ -8,7 +8,7 @@ size = Vector2(4550, 20)
 [node name="RunnerDesert" type="Node2D"]
 
 [node name="Dino" parent="." instance=ExtResource("1_5rfpc")]
-position = Vector2(587, 600)
+position = Vector2(587, 603)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(587, 637)
@@ -23,5 +23,5 @@ offset_right = 524.0
 offset_bottom = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(587, 432)
+position = Vector2(587, 431)
 zoom = Vector2(1.5, 1.5)
