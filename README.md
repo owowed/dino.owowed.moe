@@ -2,6 +2,8 @@
 
 An attempt to recreate Wallpaper Engine/Chrome Dino Runner in Godot 4, exported in HTML/WebAssembly.
 
+A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/).
+
 ## License
 
 This project is licensed under GNU AGPL-3 License. [A copy of its license is available here.](https://github.com/owowed/dino.owowed.moe/blob/main/LICENSE.AGPL3)
