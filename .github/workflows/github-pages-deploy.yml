@@ -1,0 +1,26 @@
+name: Github Pages Deploy
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        
+      - name: List project folders
+        run: ls
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+            fqdn: dino.owowed.moe
+            target_branch: gh-pages
+            build_dir: index
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
