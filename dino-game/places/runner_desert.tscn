@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvdkjwrorr7dv"]
+
+[ext_resource type="PackedScene" uid="uid://bfmowkok52xsw" path="res://entities/dino.tscn" id="1_5rfpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
+size = Vector2(4550, 20)
+
+[node name="RunnerDesert" type="Node2D"]
+
+[node name="Dino" parent="." instance=ExtResource("1_5rfpc")]
+position = Vector2(587, 600)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(587, 637)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_a3ra7")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -523.0
+offset_top = -10.0
+offset_right = 524.0
+offset_bottom = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(587, 432)
+zoom = Vector2(1.5, 1.5)
