@@ -21,6 +21,6 @@ jobs:
         with:
             fqdn: dino.owowed.moe
             target_branch: gh-pages
-            build_dir: index
+            build_dir: public
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
