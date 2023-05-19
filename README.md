@@ -1,6 +1,6 @@
 # dino.owowed.moe
 
-An attempt to recreate Wallpaper Engine/Chrome Dino Runner in Godot 4, exported in HTML/WebAssembly.
+An attempt to recreate Chrome Dino Runner in Godot 4, exported in HTML/WebAssembly.
 
 A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/).
 
