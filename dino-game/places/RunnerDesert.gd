@@ -2,7 +2,6 @@ class_name RunnerDesert
 extends Node2D
 
 const Milk = preload("res://entities/Milk.tscn")
-const Dino = preload("res://entities/Dino.tscn")
 
 @onready var dino: Dino = $Dino
 @onready var dino_camera: Camera2D = $Dino/Camera2D
