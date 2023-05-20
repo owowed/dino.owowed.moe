@@ -1,3 +1,5 @@
+# Listing for projects and its licenses used in dino.owowed.moe
+# DISCLAIMER: Any "Note" field or comment written in here is not legal advice.
 Project: dino.owowed.moe
 Project URL: https://github.com/owowed/dino.owowed.moe
 Author: owowed <island@owowed.moe>
@@ -15,5 +17,11 @@ Type: Game Asset, Spritesheet
 Author: Cup Nooble
 License: Free Basic Pack (See full license text in LICENSE.SLAP)
 Note: License allows for non-commercial use, but restricted for commercial use. See LICENSE.SLAP for more information.
+---
+Project: Silkscreen
+Project URL: https://github.com/googlefonts/silkscreen
+Type: Font
+Author: Jason Kottke
+License: SIL Open Font License, Version 1.1 (See full license text in LICENSE.SILKSCREEN)
 
 
