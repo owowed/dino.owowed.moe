@@ -21,10 +21,13 @@ var levelvar = LevelVar.new({
 	"spawn": TYPE_BOOL,
 	"respawn": TYPE_BOOL,
 	"resetvar": TYPE_STRING,
+	"zoom": TYPE_FLOAT
 })
 
 func _ready():
 	levelvar.levelvar_changed.connect(command_handler)
+	
+	print($Dino.position, $Dino/Camera2D.position)
 	
 func _process(delta):
 	$Dino.can_sprint = levelvar.get_var("dino_sprint")
@@ -61,6 +64,8 @@ func command_handler(name, value):
 		"clearmilk":
 			for child in $Milks.get_children():
 				child.queue_free()
+		"zoom":
+			$Dino/Camera2D.zoom = Vector2(value, value)
 		"quit":
 			get_tree().quit()
 		"resetvar":

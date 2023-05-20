@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmkwcq3ea2fyc"]
+[gd_scene load_steps=11 format=3 uid="uid://cmkwcq3ea2fyc"]
 
 [ext_resource type="Script" path="res://places/RunnerDesert.gd" id="1_5bucg"]
 [ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="2_jnp06"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://places/DeveloperConsole.gd" id="4_8o5cl"]
 [ext_resource type="Script" path="res://places/DeveloperConsole_LineEdit.gd" id="5_y25g7"]
 [ext_resource type="PackedScene" uid="uid://cvxlc6kp2ornp" path="res://entities/Dino.tscn" id="6_ft2mo"]
+[ext_resource type="Script" path="res://places/Dino_Camera2D.gd" id="7_siatw"]
 [ext_resource type="PackedScene" uid="uid://b5aidbadqbev2" path="res://entities/Milk.tscn" id="7_su0sb"]
 
 [sub_resource type="Theme" id="Theme_njy5w"]
@@ -72,13 +73,11 @@ script = ExtResource("5_y25g7")
 position = Vector2(587, 603)
 
 [node name="Camera2D" type="Camera2D" parent="Dino"]
-position = Vector2(4, -104)
-offset = Vector2(-400, -200)
 anchor_mode = 0
 zoom = Vector2(1.5, 1.5)
 process_callback = 0
-limit_smoothed = true
 position_smoothing_enabled = true
+script = ExtResource("7_siatw")
 
 [node name="Milks" type="Node2D" parent="."]
 
