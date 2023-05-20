@@ -4,7 +4,9 @@ extends Node2D
 const Milk = preload("res://entities/Milk.tscn")
 const Dino = preload("res://entities/Dino.tscn")
 
-@onready var dino_last_pos = $Dino.position
+@onready var dino: Dino = $Dino
+@onready var dino_camera: Camera2D = $Dino/Camera2D
+@onready var dino_last_pos = dino.position
 
 var levelvar = LevelVar.new({
 	"spawn_random_milk": TYPE_INT,
@@ -19,7 +21,6 @@ var levelvar = LevelVar.new({
 	"tp": TYPE_STRING,
 	"tpr": TYPE_STRING,
 	"spawn": TYPE_BOOL,
-	"respawn": TYPE_BOOL,
 	"resetvar": TYPE_STRING,
 	"camera_zoom": TYPE_FLOAT,
 	"camera_offset_x": TYPE_FLOAT,
@@ -30,15 +31,15 @@ var levelvar = LevelVar.new({
 func _ready():
 	levelvar.levelvar_changed.connect(command_handler)
 	
-	print($Dino.position, $Dino/Camera2D.position)
+	print(dino.position, dino_camera.position)
 	
 func _process(delta):
 	if levelvar.get_var("levelvar_bind"):
-		$Dino.can_sprint = levelvar.get_var("dino_sprint")
-		$Dino.no_gravity = levelvar.get_var("no_gravity")
-		$Dino.superspeed = levelvar.get_var("superspeed")
-		$Dino.flying = levelvar.get_var("flying")
-		$Dino/Camera2D.offset = Vector2(
+		dino.can_sprint = levelvar.get_var("dino_sprint")
+		dino.no_gravity = levelvar.get_var("no_gravity")
+		dino.superspeed = levelvar.get_var("superspeed")
+		dino.flying = levelvar.get_var("flying")
+		dino_camera.offset = Vector2(
 			levelvar.get_var("camera_offset_x"),
 			levelvar.get_var("camera_offset_y"))
 
@@ -57,22 +58,22 @@ func command_handler(name, value):
 				[float(xyz[2]), float(xyz[3])],
 				int(xyz[4]))
 		"dino_coin":
-			$Dino.coin = value
+			dino.coin = value
 		"tp":
 			var xy = value.split(",")
 			if xy.size() < 2: return
-			$Dino.position = Vector2(float(xy[0]), float(xy[1]))
+			dino.position = Vector2(float(xy[0]), float(xy[1]))
 		"tpr":
 			var xy = value.split(",")
 			if xy.size() < 2: return
-			$Dino.position += Vector2(float(xy[0]), float(xy[1]))
+			dino.position += Vector2(float(xy[0]), float(xy[1]))
 		"spawn":
-			$Dino.position = dino_last_pos
+			dino.position = dino_last_pos
 		"clearmilk":
 			for child in $Milks.get_children():
 				child.queue_free()
 		"camera_zoom":
-			$Dino/Camera2D.zoom = Vector2(value, value)
+			dino_camera.zoom = Vector2(value, value)
 		"quit":
 			get_tree().quit()
 		"resetvar":
@@ -83,5 +84,5 @@ func spawn_random_milk(x: Array[float], y: Array[float], amount: int):
 		var vec = Vector2(randf_range(x[0], x[1]), randf_range(y[0], y[1]))
 		var milk = Milk.instantiate()
 		
-		milk.position = $Dino.position + vec
+		milk.position = dino.position + vec
 		$Milks.add_child(milk)
