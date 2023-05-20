@@ -6,8 +6,7 @@ const Milk = preload("res://entities/Milk.tscn")
 @onready var dino: Dino = $Dino
 @onready var dino_camera: Camera2D = $Dino/Camera2D
 @onready var dino_last_pos = dino.position
-
-var levelvar = LevelVar.new({
+@onready var levelvar = LevelVar.new({
 	"spawn_random_milk": TYPE_INT,
 	"spawn_random_milka": TYPE_STRING,
 	"clearmilk": TYPE_BOOL,
@@ -22,6 +21,8 @@ var levelvar = LevelVar.new({
 	"spawn": TYPE_BOOL,
 	"resetvar": TYPE_STRING,
 	"camera_zoom": TYPE_FLOAT,
+	"camera_zoom_x": [TYPE_FLOAT, dino_camera.zoom.x],
+	"camera_zoom_y": [TYPE_FLOAT, dino_camera.zoom.y],
 	"camera_offset_x": TYPE_FLOAT,
 	"camera_offset_y": TYPE_FLOAT,
 	"levelvar_bind": [TYPE_BOOL, true]
@@ -41,6 +42,9 @@ func _process(delta):
 		dino_camera.offset = Vector2(
 			levelvar.get_var("camera_offset_x"),
 			levelvar.get_var("camera_offset_y"))
+		dino_camera.zoom = Vector2(
+			levelvar.get_var("camera_zoom_x"),
+			levelvar.get_var("camera_zoom_y"))
 
 func command_handler(name, value):
 	match name:
@@ -72,7 +76,8 @@ func command_handler(name, value):
 			for child in $Milks.get_children():
 				child.queue_free()
 		"camera_zoom":
-			dino_camera.zoom = Vector2(value, value)
+			levelvar.set_var("camera_zoom_x", value)
+			levelvar.set_var("camera_zoom_y", value)
 		"quit":
 			get_tree().quit()
 		"resetvar":

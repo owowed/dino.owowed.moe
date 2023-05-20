@@ -30,6 +30,7 @@ var moving = false
 signal ten_coin_reached()
 
 func jump():
+	if not can_move: return
 	velocity.y = JUMP_VELOCITY
 	$JumpAudio.play()
 
