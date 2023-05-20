@@ -20,9 +20,8 @@ func _ready():
 		
 		if levelvar_value == null and level.levelvar.get_typeof_var(levelvar_name) == TYPE_BOOL:
 			level.levelvar.set_var(levelvar_name, not level.levelvar.get_var(levelvar_name))
-		else: return
-		
-		level.levelvar.set_var(levelvar_name, levelvar_value)
+		else:
+			level.levelvar.set_var(levelvar_name, levelvar_value)
 	)
 
 func _process(delta):
