@@ -18,6 +18,8 @@ func _on_resume_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+	if OS.has_feature('JavaScript'):
+		JavaScriptBridge.eval('alert("Game exited!")')
 
 func _on_dev_console_pressed():
 	developer_console.active = !developer_console.active
