@@ -78,6 +78,10 @@ func command_handler(name, value):
 		"camera_zoom":
 			levelvar.set_var("camera_zoom_x", value)
 			levelvar.set_var("camera_zoom_y", value)
+		"camera_zoom_x", "camera_zoom_y":
+			if value == 0:
+				levelvar.set_var("camera_zoom_x", 1.5)
+				levelvar.set_var("camera_zoom_y", 1.5)
 		"quit":
 			get_tree().quit()
 		"resetvar":
