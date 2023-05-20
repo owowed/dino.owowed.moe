@@ -46,6 +46,7 @@ text = "Milk Collected: "
 layout_mode = 2
 
 [node name="DeveloperConsole" type="Control" parent="CanvasLayer"]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0

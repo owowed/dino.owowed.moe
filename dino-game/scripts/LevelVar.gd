@@ -1,7 +1,12 @@
 class_name LevelVar
 
-var _levelvar = {}
-var _levelvar_template = {}
+const SUPPORTED_TYPES = [
+	TYPE_STRING, TYPE_STRING_NAME,
+	TYPE_INT,
+	TYPE_FLOAT,
+	TYPE_BOOL,
+	TYPE_NIL
+]
 
 enum Error {
 	UNSUPPORTED_TYPE,
@@ -11,35 +16,45 @@ enum Error {
 	INVALID_BOOL
 }
 
+var _levelvar = {}
+var levelvar_defaults = {}
+var levelvar_interface = {}
+
 signal levelvar_changed(name: StringName, value)
 
 func _init(template: Dictionary):
-	_levelvar_template = template
-	
-	for k in _levelvar_template.keys():
-		if _levelvar_template[k] is Array:
-			_levelvar[k] = _levelvar_template[k][1]
-		elif _levelvar_template[k] == TYPE_ARRAY:
+	for k in template:
+		if template[k] is Array:
+			levelvar_interface[k] = template[k][0]
+			levelvar_defaults[k] = template[k][1]
+			_levelvar[k] = template[k][1]
+		elif template[k] == TYPE_ARRAY:
 			push_error(Error.UNSUPPORTED_TYPE, "levelvar value cannot be array")
-			_levelvar_template[k]
-		elif _levelvar_template[k] is Dictionary or _levelvar_template[k] == TYPE_DICTIONARY:
+			levelvar_interface[k] = null
+		elif template[k] == TYPE_DICTIONARY:
 			push_error(Error.UNSUPPORTED_TYPE, "levelvar value cannot be nested/dictionary")
-			_levelvar_template[k] = null
-		reset_var(k)
+			levelvar_interface[k] = null
+		elif template[k] not in SUPPORTED_TYPES:
+			push_error(Error.UNSUPPORTED_TYPE, "unsupported type for levelvar")
+			levelvar_interface[k] = null
+		else:
+			levelvar_interface[k] = template[k]
+			reset_var(k)
+
+func check_err_var_exists(name: StringName):
+	if not has_var(name):
+		push_error(Error.NOT_EXIST, "name %s does not exist on levelvar interface" % name)
+		return _levelvar[name]
 
 func has_var(name: StringName):
-	return name in _levelvar_template
+	return name in levelvar_interface
 
 func get_var(name: StringName, default = null):
-	if has_var(name):
-		return _levelvar.get(name, default)
-	else:
-		return _levelvar[name]
+	check_err_var_exists(name)
+	return _levelvar.get(name, default)
 	
 func set_var(name: StringName, value):
-	if not has_var(name):
-		push_error(Error.NOT_EXIST, "levelvar does not exist")
-		return Error.NOT_EXIST
+	check_err_var_exists(name)
 	if get_typeof_var(name) == typeof(value):
 		_levelvar[name] = value
 		levelvar_changed.emit(name, _levelvar[name])
@@ -52,26 +67,30 @@ func set_var(name: StringName, value):
 			return Error.TYPE_MISMATCH
 
 func reset_var(name: StringName):
-	if typeof(_levelvar_template[name]) != TYPE_ARRAY or _levelvar_template.size() < 2:
-		match _levelvar_template[name]:
+	check_err_var_exists(name)
+	if name in levelvar_defaults:
+		_levelvar[name] = levelvar_defaults[name]
+		levelvar_changed.emit(name, _levelvar[name])
+	else:
+		match levelvar_interface[name]:
 			TYPE_STRING, TYPE_STRING_NAME: _levelvar[name] = ""
 			TYPE_INT: _levelvar[name] = 0
 			TYPE_FLOAT: _levelvar[name] = 0.0
 			TYPE_BOOL: _levelvar[name] = false
-		levelvar_changed.emit(name, _levelvar[name])
-	else:
-		_levelvar[name] = _levelvar_template[name][1]
+			TYPE_NIL: _levelvar[name] = null
 		levelvar_changed.emit(name, _levelvar[name])
 	
 func get_typeof_var(name: StringName):
-	if _levelvar_template[name] is Array: return _levelvar_template[name][0]
-	else: return _levelvar_template[name]
+	return levelvar_interface[name]
 	
-func parse_to(type, value: String):
+static func parse_to(type: int, value):
 	match type:
+		TYPE_STRING, TYPE_STRING_NAME: return value
 		TYPE_INT: return int(float(value))
 		TYPE_FLOAT: return float(value)
 		TYPE_BOOL: return boolize(value)
+		TYPE_NIL: return null
 
-func boolize(value):
-	return value == "true" or int(value) == 1
+static func boolize(value):
+	if value is String or value is StringName: return value.to_lower() == "true" or int(value as String) == 1
+	return int(value) == 1
