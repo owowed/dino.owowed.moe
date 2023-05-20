@@ -21,7 +21,10 @@ var levelvar = LevelVar.new({
 	"spawn": TYPE_BOOL,
 	"respawn": TYPE_BOOL,
 	"resetvar": TYPE_STRING,
-	"zoom": TYPE_FLOAT
+	"camera_zoom": TYPE_FLOAT,
+	"camera_offset_x": TYPE_FLOAT,
+	"camera_offset_y": TYPE_FLOAT,
+	"levelvar_bind": [TYPE_BOOL, true]
 })
 
 func _ready():
@@ -30,10 +33,14 @@ func _ready():
 	print($Dino.position, $Dino/Camera2D.position)
 	
 func _process(delta):
-	$Dino.can_sprint = levelvar.get_var("dino_sprint")
-	$Dino.no_gravity = levelvar.get_var("no_gravity")
-	$Dino.superspeed = levelvar.get_var("superspeed")
-	$Dino.flying = levelvar.get_var("flying")
+	if levelvar.get_var("levelvar_bind"):
+		$Dino.can_sprint = levelvar.get_var("dino_sprint")
+		$Dino.no_gravity = levelvar.get_var("no_gravity")
+		$Dino.superspeed = levelvar.get_var("superspeed")
+		$Dino.flying = levelvar.get_var("flying")
+		$Dino/Camera2D.offset = Vector2(
+			levelvar.get_var("camera_offset_x"),
+			levelvar.get_var("camera_offset_y"))
 
 func command_handler(name, value):
 	match name:
@@ -64,7 +71,7 @@ func command_handler(name, value):
 		"clearmilk":
 			for child in $Milks.get_children():
 				child.queue_free()
-		"zoom":
+		"camera_zoom":
 			$Dino/Camera2D.zoom = Vector2(value, value)
 		"quit":
 			get_tree().quit()

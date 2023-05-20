@@ -25,6 +25,7 @@ func _init(template: Dictionary):
 		elif _levelvar_template[k] is Dictionary or _levelvar_template[k] == TYPE_DICTIONARY:
 			push_error(Error.UNSUPPORTED_TYPE, "levelvar value cannot be nested/dictionary")
 			_levelvar_template[k] = null
+		reset_var(k)
 
 func has_var(name: StringName):
 	return name in _levelvar_template
