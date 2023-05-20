@@ -1,91 +1,166 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvdkjwrorr7dv"]
+[gd_scene load_steps=10 format=3 uid="uid://c1fucpdmwhjyw"]
 
+[ext_resource type="Script" path="res://places/runner_desert.gd" id="1_3wajm"]
 [ext_resource type="PackedScene" uid="uid://bfmowkok52xsw" path="res://entities/dino.tscn" id="1_5rfpc"]
-[ext_resource type="Script" path="res://places/MilkCounter.gd" id="1_7yuou"]
 [ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="1_unu7t"]
 [ext_resource type="PackedScene" uid="uid://d4mbsh1rkokse" path="res://entities/milk.tscn" id="2_3dhbh"]
+[ext_resource type="Script" path="res://places/MilkCollected.gd" id="3_scakg"]
+[ext_resource type="Script" path="res://places/DeveloperConsole.gd" id="4_lho71"]
+[ext_resource type="Script" path="res://places/DeveloperConsole_LineEdit.gd" id="5_7eg40"]
 
 [sub_resource type="Theme" id="Theme_njy5w"]
 default_font = ExtResource("1_unu7t")
+default_font_size = 24
 /fonts/PixelFont = ExtResource("1_unu7t")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
 size = Vector2(4550, 20)
 
 [node name="RunnerDesert" type="Node2D"]
+script = ExtResource("1_3wajm")
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="MilkCollected" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_njy5w")
+script = ExtResource("3_scakg")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-offset_left = 224.0
-offset_top = 233.0
-offset_right = 492.0
-offset_bottom = 273.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MilkCollected"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 288.0
+offset_bottom = 56.0
 
-[node name="MilkCollected" type="Label" parent="Control/HBoxContainer"]
+[node name="MilkCollectedText" type="Label" parent="CanvasLayer/MilkCollected/HBoxContainer"]
 layout_mode = 2
 text = "Milk Collected: "
 
-[node name="MilkCounter" type="Label" parent="Control/HBoxContainer"]
+[node name="MilkCounter" type="Label" parent="CanvasLayer/MilkCollected/HBoxContainer"]
 layout_mode = 2
-script = ExtResource("1_7yuou")
+
+[node name="DeveloperConsole" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_lho71")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeveloperConsole"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 537.0
+offset_right = 1129.0
+offset_bottom = 627.0
+
+[node name="Label" type="Label" parent="CanvasLayer/DeveloperConsole/VBoxContainer"]
+layout_mode = 2
+text = "Developer Console -- insert anything in the textbox for wacky stuff!"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/DeveloperConsole/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+script = ExtResource("5_7eg40")
 
 [node name="Dino" parent="." instance=ExtResource("1_5rfpc")]
 position = Vector2(587, 603)
 
-[node name="Milk" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Camera2D" type="Camera2D" parent="Dino"]
+position = Vector2(4, -104)
+offset = Vector2(-400, -200)
+anchor_mode = 0
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Milks" type="Node2D" parent="."]
+
+[node name="Milk" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(702, 579)
 
-[node name="Milk2" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk2" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(297, 568)
 
-[node name="Milk3" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk3" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(831, 590)
 
-[node name="Milk4" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk16" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(913, 568)
+
+[node name="Milk4" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(364, 499)
 
-[node name="Milk5" parent="." instance=ExtResource("2_3dhbh")]
-position = Vector2(782, 538)
+[node name="Milk5" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(758, 574)
 
-[node name="Milk6" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk6" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(442, 579)
 
-[node name="Milk7" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk7" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(570, 515)
 
-[node name="Milk8" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk8" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(364, 590)
 
-[node name="Milk9" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk9" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(273, 515)
 
-[node name="Milk10" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk10" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(433, 504)
 
-[node name="Milk11" parent="." instance=ExtResource("2_3dhbh")]
-position = Vector2(847, 515)
+[node name="Milk11" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(856, 515)
 
-[node name="Milk12" parent="." instance=ExtResource("2_3dhbh")]
+[node name="Milk17" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(947, 526)
+
+[node name="Milk12" parent="Milks" instance=ExtResource("2_3dhbh")]
 position = Vector2(655, 515)
+
+[node name="Milk13" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(492, 493)
+
+[node name="Milk18" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(451, 537)
+
+[node name="Milk19" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(229, 510)
+
+[node name="Milk20" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(802, 526)
+
+[node name="Milk21" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(252, 585)
+
+[node name="Milk22" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(391, 548)
+
+[node name="Milk23" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(501, 548)
+
+[node name="Milk14" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(904, 504)
+
+[node name="Milk15" parent="Milks" instance=ExtResource("2_3dhbh")]
+position = Vector2(739, 488)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(587, 637)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_a3ra7")
+one_way_collision = true
+debug_color = Color(0.596078, 0.521569, 0.447059, 0.419608)
 
 [node name="ColorRect" type="ColorRect" parent="Floor"]
-offset_left = -523.0
+offset_left = -2275.0
 offset_top = -10.0
-offset_right = 524.0
+offset_right = 2279.0
 offset_bottom = 10.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(587, 431)
-zoom = Vector2(1.5, 1.5)

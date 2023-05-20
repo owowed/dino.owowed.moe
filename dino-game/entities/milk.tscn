@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4mbsh1rkokse"]
+[gd_scene load_steps=5 format=3 uid="uid://d4mbsh1rkokse"]
 
 [ext_resource type="Texture2D" uid="uid://ndw4m5yydc0e" path="res://assets/milk.png" id="1_kkdie"]
+[ext_resource type="Script" path="res://entities/milk.gd" id="1_m6l25"]
 [ext_resource type="Script" path="res://entities/milk_area2d.gd" id="3_0gl0g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1p2ly"]
 size = Vector2(18, 22)
 
 [node name="Milk" type="StaticBody2D"]
+script = ExtResource("1_m6l25")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1p2ly")
