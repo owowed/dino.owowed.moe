@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scene_scripts/PauseMenu.gd" id="1_p04jc"]
+
+[sub_resource type="Theme" id="Theme_wrkf3"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_wrkf3")
+script = ExtResource("1_p04jc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 288.0
+offset_right = 664.0
+offset_bottom = 354.0
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="DevConsole" type="Button" parent="."]
+layout_mode = 2
+offset_left = 975.0
+offset_top = 526.0
+offset_right = 1128.0
+offset_bottom = 557.0
+text = "Developer Console"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="DevConsole" to="." method="_on_dev_console_pressed"]

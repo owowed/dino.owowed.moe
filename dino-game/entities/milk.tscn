@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5aidbadqbev2"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://entities/Milk.gd" id="1_g0bkp"]
+[ext_resource type="Script" path="res://scene_scripts/Milk.gd" id="1_g0bkp"]
 [ext_resource type="Texture2D" uid="uid://ndw4m5yydc0e" path="res://assets/milk.png" id="2_bwoyn"]
-[ext_resource type="Script" path="res://entities/Milk_Area2D.gd" id="3_7gxth"]
+[ext_resource type="Script" path="res://scene_scripts/Milk_Area2D.gd" id="3_7gxth"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1p2ly"]
 size = Vector2(18, 22)

@@ -50,6 +50,7 @@ func _process(delta):
 		dino_camera.zoom = Vector2(
 			levelvar.get_var("camera_zoom_x"),
 			levelvar.get_var("camera_zoom_y"))
+	
 
 func command_handler(name, value):
 	match name:
@@ -103,3 +104,4 @@ func spawn_random_milk(x: Array[float], y: Array[float], amount: int):
 		
 		milk.position = dino.position + vec
 		$Milks.add_child(milk)
+

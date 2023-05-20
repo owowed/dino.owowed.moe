@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvxlc6kp2ornp"]
+[gd_scene load_steps=18 format=3]
 
-[ext_resource type="Script" path="res://entities/Dino.gd" id="1_c6ge0"]
+[ext_resource type="Script" path="res://scene_scripts/Dino.gd" id="1_c6ge0"]
 [ext_resource type="Texture2D" uid="uid://b6cgafu8lwbri" path="res://assets/dino.png" id="2_ruhek"]
 [ext_resource type="AudioStream" uid="uid://5amqai4hifkh" path="res://audio/die.wav" id="3_4jr3n"]
 [ext_resource type="AudioStream" uid="uid://djue6o7m4nb8y" path="res://audio/jump.wav" id="4_msigy"]

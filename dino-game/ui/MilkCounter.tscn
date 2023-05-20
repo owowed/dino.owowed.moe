@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="1_fg3g6"]
+[ext_resource type="Script" path="res://scene_scripts/MilkCounter.gd" id="2_3lw63"]
+
+[sub_resource type="Theme" id="Theme_njy5w"]
+default_font = ExtResource("1_fg3g6")
+default_font_size = 24
+/fonts/PixelFont = ExtResource("1_fg3g6")
+
+[node name="MilkCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_njy5w")
+script = ExtResource("2_3lw63")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 292.0
+offset_bottom = 54.0
+
+[node name="MilkCollected" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Milk Collected: "
+
+[node name="MilkCounter" type="Label" parent="HBoxContainer"]
+layout_mode = 2

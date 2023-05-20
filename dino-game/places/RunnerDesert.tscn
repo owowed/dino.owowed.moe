@@ -1,74 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmkwcq3ea2fyc"]
+[gd_scene load_steps=9 format=3 uid="uid://dl26e3j7b33l1"]
 
-[ext_resource type="Script" path="res://places/RunnerDesert.gd" id="1_5bucg"]
-[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="2_jnp06"]
-[ext_resource type="Script" path="res://places/MilkCollected.gd" id="3_qb8tk"]
-[ext_resource type="Script" path="res://places/DeveloperConsole.gd" id="4_8o5cl"]
-[ext_resource type="Script" path="res://places/DeveloperConsole_LineEdit.gd" id="5_y25g7"]
-[ext_resource type="PackedScene" uid="uid://cvxlc6kp2ornp" path="res://entities/Dino.tscn" id="6_ft2mo"]
-[ext_resource type="Script" path="res://places/Dino_Camera2D.gd" id="7_siatw"]
-[ext_resource type="PackedScene" uid="uid://b5aidbadqbev2" path="res://entities/Milk.tscn" id="7_su0sb"]
-
-[sub_resource type="Theme" id="Theme_njy5w"]
-default_font = ExtResource("2_jnp06")
-default_font_size = 24
-/fonts/PixelFont = ExtResource("2_jnp06")
+[ext_resource type="Script" path="res://scene_scripts/RunnerDesert.gd" id="1_8emqa"]
+[ext_resource type="PackedScene" path="res://ui/MilkCounter.tscn" id="2_t5f1y"]
+[ext_resource type="PackedScene" path="res://ui/DeveloperConsole.tscn" id="4_444oy"]
+[ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="4_gd7gn"]
+[ext_resource type="Script" path="res://scene_scripts/Dino_Camera2D.gd" id="6_8a5b4"]
+[ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="6_ft2mo"]
+[ext_resource type="PackedScene" path="res://entities/Milk.tscn" id="7_su0sb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
 size = Vector2(4550, 20)
 
 [node name="RunnerDesert" type="Node2D"]
-script = ExtResource("1_5bucg")
+script = ExtResource("1_8emqa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
 
-[node name="MilkCollected" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme = SubResource("Theme_njy5w")
-script = ExtResource("3_qb8tk")
+[node name="MilkCounter" parent="CanvasLayer" instance=ExtResource("2_t5f1y")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MilkCollected"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 16.0
-offset_right = 288.0
-offset_bottom = 56.0
+[node name="DeveloperConsole" parent="CanvasLayer" node_paths=PackedStringArray("dino") instance=ExtResource("4_444oy")]
+dino = NodePath("../../Dino")
 
-[node name="MilkCollectedText" type="Label" parent="CanvasLayer/MilkCollected/HBoxContainer"]
-layout_mode = 2
-text = "Milk Collected: "
-
-[node name="MilkCounter" type="Label" parent="CanvasLayer/MilkCollected/HBoxContainer"]
-layout_mode = 2
-
-[node name="DeveloperConsole" type="Control" parent="CanvasLayer"]
-process_mode = 3
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_8o5cl")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeveloperConsole"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 537.0
-offset_right = 1129.0
-offset_bottom = 627.0
-
-[node name="Label" type="Label" parent="CanvasLayer/DeveloperConsole/VBoxContainer"]
-layout_mode = 2
-text = "Developer Console -- insert anything in the textbox for wacky stuff!"
-
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/DeveloperConsole/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-script = ExtResource("5_y25g7")
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_gd7gn")]
 
 [node name="Dino" parent="." instance=ExtResource("6_ft2mo")]
 position = Vector2(587, 603)
@@ -78,7 +32,7 @@ anchor_mode = 0
 zoom = Vector2(1.5, 1.5)
 process_callback = 0
 position_smoothing_enabled = true
-script = ExtResource("7_siatw")
+script = ExtResource("6_8a5b4")
 
 [node name="Milks" type="Node2D" parent="."]
 
