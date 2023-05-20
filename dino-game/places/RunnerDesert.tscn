@@ -1,23 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1fucpdmwhjyw"]
+[gd_scene load_steps=10 format=3 uid="uid://cmkwcq3ea2fyc"]
 
-[ext_resource type="Script" path="res://places/runner_desert.gd" id="1_3wajm"]
-[ext_resource type="PackedScene" uid="uid://bfmowkok52xsw" path="res://entities/dino.tscn" id="1_5rfpc"]
-[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="1_unu7t"]
-[ext_resource type="PackedScene" uid="uid://d4mbsh1rkokse" path="res://entities/milk.tscn" id="2_3dhbh"]
-[ext_resource type="Script" path="res://places/MilkCollected.gd" id="3_scakg"]
-[ext_resource type="Script" path="res://places/DeveloperConsole.gd" id="4_lho71"]
-[ext_resource type="Script" path="res://places/DeveloperConsole_LineEdit.gd" id="5_7eg40"]
+[ext_resource type="Script" path="res://places/RunnerDesert.gd" id="1_5bucg"]
+[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="2_jnp06"]
+[ext_resource type="Script" path="res://places/MilkCollected.gd" id="3_qb8tk"]
+[ext_resource type="Script" path="res://places/DeveloperConsole.gd" id="4_8o5cl"]
+[ext_resource type="Script" path="res://places/DeveloperConsole_LineEdit.gd" id="5_y25g7"]
+[ext_resource type="PackedScene" uid="uid://cvxlc6kp2ornp" path="res://entities/Dino.tscn" id="6_ft2mo"]
+[ext_resource type="PackedScene" uid="uid://b5aidbadqbev2" path="res://entities/Milk.tscn" id="7_su0sb"]
 
 [sub_resource type="Theme" id="Theme_njy5w"]
-default_font = ExtResource("1_unu7t")
+default_font = ExtResource("2_jnp06")
 default_font_size = 24
-/fonts/PixelFont = ExtResource("1_unu7t")
+/fonts/PixelFont = ExtResource("2_jnp06")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
 size = Vector2(4550, 20)
 
 [node name="RunnerDesert" type="Node2D"]
-script = ExtResource("1_3wajm")
+script = ExtResource("1_5bucg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
@@ -28,7 +28,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = SubResource("Theme_njy5w")
-script = ExtResource("3_scakg")
+script = ExtResource("3_qb8tk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MilkCollected"]
 layout_mode = 0
@@ -50,7 +50,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("4_lho71")
+script = ExtResource("4_8o5cl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeveloperConsole"]
 layout_mode = 0
@@ -66,9 +66,9 @@ text = "Developer Console -- insert anything in the textbox for wacky stuff!"
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/DeveloperConsole/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-script = ExtResource("5_7eg40")
+script = ExtResource("5_y25g7")
 
-[node name="Dino" parent="." instance=ExtResource("1_5rfpc")]
+[node name="Dino" parent="." instance=ExtResource("6_ft2mo")]
 position = Vector2(587, 603)
 
 [node name="Camera2D" type="Camera2D" parent="Dino"]
@@ -82,73 +82,73 @@ position_smoothing_enabled = true
 
 [node name="Milks" type="Node2D" parent="."]
 
-[node name="Milk" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(702, 579)
 
-[node name="Milk2" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk2" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(297, 568)
 
-[node name="Milk3" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk3" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(831, 590)
 
-[node name="Milk16" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk16" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(913, 568)
 
-[node name="Milk4" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk4" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(364, 499)
 
-[node name="Milk5" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk5" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(758, 574)
 
-[node name="Milk6" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk6" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(442, 579)
 
-[node name="Milk7" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk7" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(570, 515)
 
-[node name="Milk8" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk8" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(364, 590)
 
-[node name="Milk9" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk9" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(273, 515)
 
-[node name="Milk10" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk10" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(433, 504)
 
-[node name="Milk11" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk11" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(856, 515)
 
-[node name="Milk17" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk17" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(947, 526)
 
-[node name="Milk12" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk12" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(655, 515)
 
-[node name="Milk13" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk13" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(492, 493)
 
-[node name="Milk18" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk18" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(451, 537)
 
-[node name="Milk19" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk19" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(229, 510)
 
-[node name="Milk20" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk20" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(802, 526)
 
-[node name="Milk21" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk21" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(252, 585)
 
-[node name="Milk22" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk22" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(391, 548)
 
-[node name="Milk23" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk23" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(501, 548)
 
-[node name="Milk14" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk14" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(904, 504)
 
-[node name="Milk15" parent="Milks" instance=ExtResource("2_3dhbh")]
+[node name="Milk15" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(739, 488)
 
 [node name="Floor" type="StaticBody2D" parent="."]
@@ -164,3 +164,4 @@ offset_left = -2275.0
 offset_top = -10.0
 offset_right = 2279.0
 offset_bottom = 10.0
+color = Color(0.438152, 0.527013, 0.372192, 1)

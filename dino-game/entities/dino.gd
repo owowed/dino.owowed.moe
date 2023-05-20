@@ -5,8 +5,9 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -360.0
 
 const GRAVITY_MULTIPLIER = 2
-const CROUCH_SPEED_REDUCTION = 0.9
 const CROUCH_GRAVITY_MULTIPLIER = 2
+const CROUCH_SPEED_REDUCTION = 0.9
+const NO_GRAVITY_REDUCTION = 0.5
 const LONG_JUMP_MULTIPLIER = 0.4
 const SPRINT_SPEED_MULTIPLIER = 2 # dev only
 
@@ -17,6 +18,9 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") *
 
 var can_move = true
 var can_sprint = OS.is_debug_build()
+var no_gravity = false
+var superspeed = false
+var flying = false
 
 @export var coin = 0
 var crouching = false
@@ -26,7 +30,6 @@ var moving = false
 signal ten_coin_reached()
 
 func jump():
-	if not can_move: return
 	velocity.y = JUMP_VELOCITY
 	$JumpAudio.play()
 
@@ -39,10 +42,10 @@ func add_coin(num: int = 1):
 	else:
 		$PointAudio.play()
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	if not is_on_floor():
 		process_gravity(delta)
-	if is_on_floor() and Input.is_action_just_pressed("player.jump"):
+	if Input.is_action_just_pressed("player.jump") and (is_on_floor() or flying):
 		jump()
 
 	var direction = Input.get_axis("player.move.left", "player.move.right")
@@ -50,11 +53,12 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func process_gravity(delta):
+func process_gravity(delta: float):
 	var offset = gravity
 	
 	if crouching: offset *= CROUCH_GRAVITY_MULTIPLIER
 	if not crouching and Input.is_action_pressed("player.jump"): offset *= LONG_JUMP_MULTIPLIER
+	if no_gravity: offset *= NO_GRAVITY_REDUCTION
 	
 	offset *= delta
 	
@@ -86,7 +90,10 @@ func move(direction: float):
 			sprinting = true
 			offset *= SPRINT_SPEED_MULTIPLIER
 		
-		velocity.x = offset
+		if superspeed:
+			velocity.x += offset
+		else:
+			velocity.x = offset
 	else:
 		if is_on_floor() or absf(velocity.x) < absf(SPEED):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -100,6 +107,6 @@ func move(direction: float):
 		else:
 			$AnimatedSprite2D.play("idling")
 
-	moving = absf(velocity.x) > 0.0
+	moving = absf(velocity.x) > 0
 	$StandingCollision.disabled = crouching
 	$CrouchingCollision.disabled = !crouching

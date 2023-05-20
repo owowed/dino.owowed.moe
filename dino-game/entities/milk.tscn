@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4mbsh1rkokse"]
+[gd_scene load_steps=5 format=3 uid="uid://b5aidbadqbev2"]
 
-[ext_resource type="Texture2D" uid="uid://ndw4m5yydc0e" path="res://assets/milk.png" id="1_kkdie"]
-[ext_resource type="Script" path="res://entities/milk.gd" id="1_m6l25"]
-[ext_resource type="Script" path="res://entities/milk_area2d.gd" id="3_0gl0g"]
+[ext_resource type="Script" path="res://entities/Milk.gd" id="1_g0bkp"]
+[ext_resource type="Texture2D" uid="uid://ndw4m5yydc0e" path="res://assets/milk.png" id="2_bwoyn"]
+[ext_resource type="Script" path="res://entities/Milk_Area2D.gd" id="3_7gxth"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1p2ly"]
 size = Vector2(18, 22)
 
 [node name="Milk" type="StaticBody2D"]
-script = ExtResource("1_m6l25")
+script = ExtResource("1_g0bkp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1p2ly")
@@ -16,13 +16,13 @@ disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_kkdie")
+texture = ExtResource("2_bwoyn")
 hframes = 3
 frame = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-script = ExtResource("3_0gl0g")
+script = ExtResource("3_7gxth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1p2ly")
