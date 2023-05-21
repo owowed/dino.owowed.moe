@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="dino.owowed.moe/dino-game"
+config/name="Dino Game"
 run/main_scene="res://places/RunnerDesert.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
