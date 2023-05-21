@@ -9,23 +9,27 @@ const CROUCH_GRAVITY_MULTIPLIER = 2
 const CROUCH_SPEED_REDUCTION = 0.9
 const NO_GRAVITY_REDUCTION = 0.5
 const LONG_JUMP_MULTIPLIER = 0.4
-const SPRINT_SPEED_MULTIPLIER = 2 # dev only
+const SPRINT_SPEED_MULTIPLIER = 2
 
 const MAX_GRAVITY = 655
 const MAX_GRAVITY_CROUCHING = 876
 
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * GRAVITY_MULTIPLIER
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var spawn_location = position
+var died = false
 var can_move = true
 var can_sprint = OS.is_debug_build()
-var no_gravity = false
-var superspeed = false
-var flying = false
 
-@export var coin = 0
 var crouching = false
 var sprinting = false
 var moving = false
+
+@export var coin = 0
+var deaths = 0
+var no_gravity = false
+var superspeed = false
+var flying = false
 
 signal ten_coin_reached()
 
@@ -44,6 +48,7 @@ func add_coin(num: int = 1):
 		$PointAudio.play()
 
 func _physics_process(delta: float):
+	if died: return
 	if not is_on_floor():
 		process_gravity(delta)
 	if Input.is_action_just_pressed("player.jump") and (is_on_floor() or flying):
@@ -51,11 +56,13 @@ func _physics_process(delta: float):
 
 	var direction = Input.get_axis("player.move.left", "player.move.right")
 	move(direction)
+	
+	if position.y > 1000: die()
 
 	move_and_slide()
 
 func process_gravity(delta: float):
-	var offset = gravity
+	var offset = gravity * GRAVITY_MULTIPLIER
 	
 	if crouching: offset *= CROUCH_GRAVITY_MULTIPLIER
 	if not crouching and Input.is_action_pressed("player.jump"): offset *= LONG_JUMP_MULTIPLIER
@@ -111,3 +118,21 @@ func move(direction: float):
 	moving = absf(velocity.x) > 0
 	$StandingCollision.disabled = crouching
 	$CrouchingCollision.disabled = !crouching
+
+func die():
+	deaths += 1
+	can_move = false
+	died = true
+	$DieAudio.play()
+	$AnimatedSprite2D.play("die")
+	await $AnimatedSprite2D.animation_looped
+	respawn()
+	
+func respawn():
+	coin = 0
+	can_move = true
+	died = false
+	position = spawn_location
+	velocity = Vector2.ZERO
+	$AnimatedSprite2D.flip_h = false
+	$AnimatedSprite2D.play("idling")

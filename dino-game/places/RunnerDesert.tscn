@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scene_scripts/RunnerDesert.gd" id="1_8emqa"]
 [ext_resource type="PackedScene" path="res://ui/MilkCounter.tscn" id="2_t5f1y"]
-[ext_resource type="PackedScene" path="res://ui/DeveloperConsole.tscn" id="4_444oy"]
+[ext_resource type="PackedScene" uid="uid://dxprf3cmqm3aj" path="res://ui/DeveloperConsole.tscn" id="4_444oy"]
 [ext_resource type="PackedScene" uid="uid://ylxdtsus8qsr" path="res://ui/PauseMenu.tscn" id="4_gd7gn"]
 [ext_resource type="Script" path="res://scene_scripts/Dino_Camera2D.gd" id="6_8a5b4"]
-[ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="6_ft2mo"]
+[ext_resource type="PackedScene" uid="uid://cjuwk12hqmbj2" path="res://entities/Dino.tscn" id="6_ft2mo"]
 [ext_resource type="PackedScene" path="res://entities/Milk.tscn" id="7_su0sb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
@@ -20,6 +20,7 @@ follow_viewport_scale = 0.001
 [node name="MilkCounter" parent="CanvasLayer" instance=ExtResource("2_t5f1y")]
 
 [node name="DeveloperConsole" parent="CanvasLayer" node_paths=PackedStringArray("dino") instance=ExtResource("4_444oy")]
+visible = false
 dino = NodePath("../../Dino")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_gd7gn")]
@@ -119,3 +120,5 @@ offset_top = -10.0
 offset_right = 2279.0
 offset_bottom = 10.0
 color = Color(0.438152, 0.527013, 0.372192, 1)
+
+[connection signal="ten_coin_reached" from="Dino" to="CanvasLayer/MilkCounter" method="_on_dino_ten_coin_reached"]

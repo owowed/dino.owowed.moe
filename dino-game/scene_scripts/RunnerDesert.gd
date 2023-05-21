@@ -32,7 +32,9 @@ const Milk = preload("res://entities/Milk.tscn")
 	"camera_zoom_y": [TYPE_FLOAT, dino_camera.zoom.y],
 	"camera_offset_x": TYPE_FLOAT,
 	"camera_offset_y": TYPE_FLOAT,
-	"levelvar_bind": [TYPE_BOOL, true]
+	"levelvar_bind": [TYPE_BOOL, true],
+	"die": TYPE_BOOL,
+	"debuginfo": [TYPE_STRING, "levelvar"]
 })
 
 func _ready():
@@ -96,6 +98,8 @@ func command_handler(name, value):
 			levelvar.reset_var(value)
 		"resetvel":
 			dino.velocity = Vector2.ZERO
+		"die":
+			dino.die()
 
 func spawn_random_milk(x: Array[float], y: Array[float], amount: int):
 	for i in range(0, amount):

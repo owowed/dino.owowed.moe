@@ -16,7 +16,7 @@ enum Error {
 	INVALID_BOOL
 }
 
-var _levelvar = {}
+var levelvar_dict = {}
 var levelvar_defaults = {}
 var levelvar_interface = {}
 
@@ -27,7 +27,7 @@ func _init(template: Dictionary):
 		if template[k] is Array:
 			levelvar_interface[k] = template[k][0]
 			levelvar_defaults[k] = template[k][1]
-			_levelvar[k] = template[k][1]
+			levelvar_dict[k] = template[k][1]
 		elif template[k] == TYPE_ARRAY:
 			push_error(Error.UNSUPPORTED_TYPE, "levelvar value cannot be array")
 			levelvar_interface[k] = null
@@ -44,20 +44,20 @@ func _init(template: Dictionary):
 func check_err_var_exists(name: StringName):
 	if not has_var(name):
 		push_error(Error.NOT_EXIST, "name %s does not exist on levelvar interface" % name)
-		return _levelvar[name]
+		return levelvar_dict[name]
 
 func has_var(name: StringName):
 	return name in levelvar_interface
 
 func get_var(name: StringName, default = null):
 	check_err_var_exists(name)
-	return _levelvar.get(name, default)
+	return levelvar_dict.get(name, default)
 	
 func set_var(name: StringName, value):
 	check_err_var_exists(name)
 	if get_typeof_var(name) == typeof(value):
-		_levelvar[name] = value
-		levelvar_changed.emit(name, _levelvar[name])
+		levelvar_dict[name] = value
+		levelvar_changed.emit(name, levelvar_dict[name])
 	else:
 		if value is String:
 			set_var(name, parse_to(get_typeof_var(name), value))
@@ -69,16 +69,16 @@ func set_var(name: StringName, value):
 func reset_var(name: StringName):
 	check_err_var_exists(name)
 	if name in levelvar_defaults:
-		_levelvar[name] = levelvar_defaults[name]
-		levelvar_changed.emit(name, _levelvar[name])
+		levelvar_dict[name] = levelvar_defaults[name]
+		levelvar_changed.emit(name, levelvar_dict[name])
 	else:
 		match levelvar_interface[name]:
-			TYPE_STRING, TYPE_STRING_NAME: _levelvar[name] = ""
-			TYPE_INT: _levelvar[name] = 0
-			TYPE_FLOAT: _levelvar[name] = 0.0
-			TYPE_BOOL: _levelvar[name] = false
-			TYPE_NIL: _levelvar[name] = null
-		levelvar_changed.emit(name, _levelvar[name])
+			TYPE_STRING, TYPE_STRING_NAME: levelvar_dict[name] = ""
+			TYPE_INT: levelvar_dict[name] = 0
+			TYPE_FLOAT: levelvar_dict[name] = 0.0
+			TYPE_BOOL: levelvar_dict[name] = false
+			TYPE_NIL: levelvar_dict[name] = null
+		levelvar_changed.emit(name, levelvar_dict[name])
 	
 func get_typeof_var(name: StringName):
 	return levelvar_interface[name]
