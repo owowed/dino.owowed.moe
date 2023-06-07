@@ -2,7 +2,8 @@
 Project: dino.owowed.moe
 Project URL: https://github.com/owowed/dino.owowed.moe
 Author: owowed <island@owowed.moe>
-License: AGPL-3.0-or-later (See full license text in LICENSE.AGPL3)
+License: AGPL-3.0-or-later
+License File: LICENSE.AGPL3
 ---
 Project: coi-serviceworker
 Project URL: https://github.com/gzuidhof/coi-serviceworker
