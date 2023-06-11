@@ -6,9 +6,9 @@ A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/).
 
 ## Project Structure
 
-- `build/dino-game` - Contains the lastest build for dino-game.
-- `dino-game` - Contains the source code for dino-game.
-- `public` - Contains the source code for the website hosted by Github Pages.
+- `build/dino-game` - the lastest build for dino-game.
+- `dino-game` - the source code for dino-game in Godot 4.
+- `public` - the source code for the website in HTML.
 
 ## License
 
