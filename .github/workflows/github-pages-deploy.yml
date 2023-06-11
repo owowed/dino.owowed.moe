@@ -22,6 +22,11 @@ jobs:
           name: dino-game-build
           path: build
 
+      - name: Replace public with build folder
+        run: |
+          rm -rf public
+          mv build public
+
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
