@@ -2,13 +2,13 @@
 
 An attempt to recreate Chrome Dino Runner in Godot 4, exported in HTML/WebAssembly.
 
-A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/). Currently, the game only works on PC.
+A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/). Currently, the game is supported on PC.
 
 ## Project Structure
 
-- `./build/dino-game` -- Contains the lastest build for dino-game.
-- `./dino-game` -- Contains the source code for dino-game.
-- `./public` -- Contains the source code for the website hosted by Github Pages.
+- `build/dino-game` - Contains the lastest build for dino-game.
+- `dino-game` - Contains the source code for dino-game.
+- `public` - Contains the source code for the website hosted by Github Pages.
 
 ## License
 
