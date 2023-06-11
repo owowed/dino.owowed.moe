@@ -32,3 +32,6 @@ jobs:
         with:
           name: dino-game
           path: build/dino-game
+      
+      - name: Run tree
+        run: tree
