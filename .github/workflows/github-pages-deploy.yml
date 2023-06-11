@@ -13,6 +13,8 @@ jobs:
       - name: Check out main repo
         uses: actions/checkout@v3
 
+      - run: tree
+
       - name: Godot Build Game
         uses: ./.github/workflows/godot-game-build.yml
 
