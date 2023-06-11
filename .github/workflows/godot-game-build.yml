@@ -29,7 +29,7 @@ jobs:
       - name: Export Game
         run: |
           cd dino-game
-          godot --headless --export-release DinoGameWeb ../build/dino-game
+          godot --headless --export-release DinoGameWeb ../build/index.html
 
       - name: Upload game artifact
         uses: actions/upload-artifact@v3
