@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup game build folder
-        run: mkdir -p /var/godot-build/
+        run: mkdir -p $GITHUB_WORKSPACE/godot-build/
         
       - name: Setup Godot
         uses: chickensoft-games/setup-godot@v1
@@ -28,13 +28,13 @@ jobs:
       - name: Export Game
         run: |
           cd dino-game
-          godot --headless --export-release DinoGameWeb /var/godot-build/index.html
+          godot --headless --export-release DinoGameWeb $GITHUB_WORKSPACE/godot-build/index.html
 
       - name: Upload game artifact
         uses: actions/upload-artifact@v3
         with:
           name: dino-game
-          path: /var/godot-build
+          path: ${{ github.workspace }}/godot-build
       
       - name: Run tree
         run: tree
