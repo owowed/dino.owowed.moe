@@ -34,7 +34,7 @@ jobs:
       - name: Upload game artifact
         uses: actions/upload-artifact@v3
         with:
-          name: dino-game-build
+          name: dino-game
           path: build
       
       - name: Run tree

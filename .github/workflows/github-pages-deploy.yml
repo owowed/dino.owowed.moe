@@ -19,7 +19,7 @@ jobs:
       - name: Download godot artifact
         uses: actions/download-artifact@v3
         with:
-          name: dino-game-build
+          name: dino-game
           path: build
 
       - name: Replace public with build folder
