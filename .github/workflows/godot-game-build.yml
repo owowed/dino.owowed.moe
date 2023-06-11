@@ -7,7 +7,7 @@ name: Godot Build Game
 on: workflow_call
 
 jobs:
-  export-game:
+  export:
     runs-on: ubuntu-latest
     steps:
       - name: Check out main repo
@@ -22,20 +22,16 @@ jobs:
       - name: Check Godot Version
         run: godot --version
 
-      - name: Make directory for build path
-        run: |
-          mkdir build
-
       - name: Export Game
         run: |
           cd dino-game
-          godot --headless --export-release DinoGameWeb ../build/index.html
+          godot --headless --export-release DinoGameWeb /var/builds/index.html
 
       - name: Upload game artifact
         uses: actions/upload-artifact@v3
         with:
           name: dino-game
-          path: build
+          path: /var/builds/index.html
       
       - name: Run tree
         run: tree

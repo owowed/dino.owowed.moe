@@ -16,16 +16,11 @@ jobs:
       - name: Check out main repo
         uses: actions/checkout@v3
 
-      - name: Download godot artifact
+      - name: Download godot artifact into public folder
         uses: actions/download-artifact@v3
         with:
           name: dino-game
-          path: build
-
-      - name: Replace public with build folder
-        run: |
-          rm -rf public
-          mv build public
+          path: public
 
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v1
