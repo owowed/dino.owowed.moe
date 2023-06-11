@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Check out main repo
         uses: actions/checkout@v3
+
+      - name: Setup game build folder
+        run: mkdir -p /var/godot-build/
         
       - name: Setup Godot
         uses: chickensoft-games/setup-godot@v1
@@ -25,13 +28,13 @@ jobs:
       - name: Export Game
         run: |
           cd dino-game
-          godot --headless --export-release DinoGameWeb /var/builds/index.html
+          godot --headless --export-release DinoGameWeb /var/godot-build/index.html
 
       - name: Upload game artifact
         uses: actions/upload-artifact@v3
         with:
           name: dino-game
-          path: /var/builds/index.html
+          path: /var/godot-build
       
       - name: Run tree
         run: tree
