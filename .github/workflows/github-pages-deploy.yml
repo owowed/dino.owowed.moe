@@ -20,6 +20,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dino-game-build
+          path: build
 
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v1
