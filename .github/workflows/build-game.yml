@@ -1,0 +1,24 @@
+name: Github Pages Deploy
+
+on:
+  push:
+    branches:
+      - main
+# on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main repo
+        uses: actions/checkout@v3
+
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v1
+        with:
+          version: 4.0.1
+          use-dotnet: false
+
+      - name: Test Godot
+        run: |
+          godot -v
