@@ -7,16 +7,19 @@ on:
 # on: workflow_dispatch
 
 jobs:
-  build:
+  build-godot-game:
+    uses: ./.github/workflows/godot-game-build.yml
+  build-pages:
+    needs: build-godot-game
     runs-on: ubuntu-latest
     steps:
       - name: Check out main repo
         uses: actions/checkout@v3
 
-      - run: cat ./.github/workflows/godot-game-build.yml
-
-      - name: Godot Build Game
-        uses: owowed/dino.owowed.moe/.github/workflows/godot-game-build.yml@main
+      - name: Download godot artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dino-game
 
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v1
@@ -26,7 +29,7 @@ jobs:
       - name: Run tree
         run: tree
   publish:
-    needs: build
+    needs: build-pages
     runs-on: ubuntu-latest
     
     permissions:
