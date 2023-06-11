@@ -19,6 +19,10 @@ jobs:
           version: 4.0.2
           use-dotnet: false
 
-      - name: Test Godot
+      - name: Check Godot Version
+        run: godot --version
+
+      - name: Export Game
         run: |
-          godot -v
+          cd dino-game
+          godot --headless --export-release DinoGameWeb
