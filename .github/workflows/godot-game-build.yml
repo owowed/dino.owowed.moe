@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out main repo
+        uses: actions/checkout@v3
+        
       - name: Setup Godot
         uses: chickensoft-games/setup-godot@v1
         with:
@@ -23,3 +26,9 @@ jobs:
         run: |
           cd dino-game
           godot --headless --export-release DinoGameWeb
+
+      - name: Upload game artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dino-game
+          path: build/dino-game
