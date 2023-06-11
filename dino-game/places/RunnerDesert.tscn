@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl26e3j7b33l1"]
+[gd_scene load_steps=11 format=3 uid="uid://dl26e3j7b33l1"]
 
 [ext_resource type="Script" path="res://scene_scripts/RunnerDesert.gd" id="1_8emqa"]
 [ext_resource type="PackedScene" path="res://ui/MilkCounter.tscn" id="2_t5f1y"]
@@ -6,13 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://ylxdtsus8qsr" path="res://ui/PauseMenu.tscn" id="4_gd7gn"]
 [ext_resource type="Script" path="res://scene_scripts/Dino_Camera2D.gd" id="6_8a5b4"]
 [ext_resource type="PackedScene" uid="uid://cjuwk12hqmbj2" path="res://entities/Dino.tscn" id="6_ft2mo"]
-[ext_resource type="PackedScene" path="res://entities/Milk.tscn" id="7_su0sb"]
+[ext_resource type="PackedScene" uid="uid://bslehltw0q2p6" path="res://entities/Milk.tscn" id="7_su0sb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_baoy2"]
+rough = true
+bounce = 1.77
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdxyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
 size = Vector2(4550, 20)
 
-[node name="RunnerDesert" type="Node2D"]
+[node name="RunnerDesert" type="Node2D" node_paths=PackedStringArray("dino", "main_camera")]
 script = ExtResource("1_8emqa")
+dino = NodePath("Dino")
+main_camera = NodePath("Dino/Camera2D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
@@ -34,6 +42,40 @@ zoom = Vector2(1.5, 1.5)
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("6_8a5b4")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(586, 488)
+collision_layer = 0
+collision_mask = 3
+mass = 18.25
+physics_material_override = SubResource("PhysicsMaterial_baoy2")
+gravity_scale = 0.5
+freeze_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_tdxyx")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(587, 637)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_a3ra7")
+debug_color = Color(0.596078, 0.521569, 0.447059, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -2275.0
+offset_top = -10.0
+offset_right = 2279.0
+offset_bottom = 10.0
+color = Color(0.438152, 0.527013, 0.372192, 1)
 
 [node name="Milks" type="Node2D" parent="."]
 
@@ -105,20 +147,5 @@ position = Vector2(904, 504)
 
 [node name="Milk15" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(739, 488)
-
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(587, 637)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("RectangleShape2D_a3ra7")
-one_way_collision = true
-debug_color = Color(0.596078, 0.521569, 0.447059, 0.419608)
-
-[node name="ColorRect" type="ColorRect" parent="Floor"]
-offset_left = -2275.0
-offset_top = -10.0
-offset_right = 2279.0
-offset_bottom = 10.0
-color = Color(0.438152, 0.527013, 0.372192, 1)
 
 [connection signal="ten_coin_reached" from="Dino" to="CanvasLayer/MilkCounter" method="_on_dino_ten_coin_reached"]

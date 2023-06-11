@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://bslehltw0q2p6"]
 
 [ext_resource type="Script" path="res://scene_scripts/Milk.gd" id="1_g0bkp"]
 [ext_resource type="Texture2D" uid="uid://ndw4m5yydc0e" path="res://assets/milk.png" id="2_bwoyn"]
@@ -8,6 +8,8 @@
 size = Vector2(18, 22)
 
 [node name="Milk" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_g0bkp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

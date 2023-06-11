@@ -3,9 +3,9 @@ extends Node2D
 
 const Milk = preload("res://entities/Milk.tscn")
 
-@onready var dino: Dino = $Dino
-@onready var dino_camera: Camera2D = $Dino/Camera2D
-@onready var dino_last_pos = dino.position
+@export var dino: Dino
+@export var main_camera: Camera2D
+
 @onready var levelvar = LevelVar.new({
 	"spawn_random_milk": TYPE_INT,
 	"spawn_random_milk_advanced": TYPE_STRING,
@@ -28,8 +28,8 @@ const Milk = preload("res://entities/Milk.tscn")
 	"resetvar": TYPE_STRING,
 	"resetvel": TYPE_BOOL,
 	"camera_zoom": TYPE_FLOAT,
-	"camera_zoom_x": [TYPE_FLOAT, dino_camera.zoom.x],
-	"camera_zoom_y": [TYPE_FLOAT, dino_camera.zoom.y],
+	"camera_zoom_x": [TYPE_FLOAT, main_camera.zoom.x],
+	"camera_zoom_y": [TYPE_FLOAT, main_camera.zoom.y],
 	"camera_offset_x": TYPE_FLOAT,
 	"camera_offset_y": TYPE_FLOAT,
 	"levelvar_bind": [TYPE_BOOL, true],
@@ -46,10 +46,10 @@ func _process(delta):
 		dino.no_gravity = levelvar.get_var("no_gravity")
 		dino.superspeed = levelvar.get_var("superspeed")
 		dino.flying = levelvar.get_var("flying")
-		dino_camera.offset = Vector2(
+		main_camera.offset = Vector2(
 			levelvar.get_var("camera_offset_x"),
 			levelvar.get_var("camera_offset_y"))
-		dino_camera.zoom = Vector2(
+		main_camera.zoom = Vector2(
 			levelvar.get_var("camera_zoom_x"),
 			levelvar.get_var("camera_zoom_y"))
 	
@@ -79,7 +79,7 @@ func command_handler(name, value):
 			if xy.size() < 2: return
 			dino.position += Vector2(float(xy[0]), float(xy[1]))
 		"spawn":
-			dino.position = dino_last_pos
+			dino.respawn()
 		"clearmilk":
 			for child in $Milks.get_children():
 				child.queue_free()
