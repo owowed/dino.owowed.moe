@@ -16,7 +16,7 @@ jobs:
       - run: cat ./.github/workflows/godot-game-build.yml
 
       - name: Godot Build Game
-        uses: ./.github/workflows/godot-game-build.yml
+        uses: owowed/dino.owowed.moe/.github/workflows/godot-game-build.yml
 
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v1
