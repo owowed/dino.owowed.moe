@@ -59,9 +59,9 @@ jobs:
           name: github-pages
           path: public
 
-      - name: Unzip github-pages tar & Moving contents from "." folder
+      - name: Unzip github-pages tar and moving contents from "." folder
         run: |
-          tar –xvzf public/artifacts.tar –C public
+          tar –xvzf public/artifact.tar –C public
           mv -f public/./* public
           rmdir public/.
 
