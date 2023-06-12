@@ -27,7 +27,7 @@ jobs:
           godot --headless --export-release DinoGameWeb $GITHUB_WORKSPACE/godot-build/index.html
 
       - name: Copy licenses
-        run: cp LICENSE* godot-build
+        run: cp -v LICENSE* godot-build
 
       - name: Upload game artifact
         uses: actions/upload-artifact@v3
