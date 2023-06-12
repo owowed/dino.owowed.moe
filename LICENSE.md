@@ -16,24 +16,6 @@ Copyright (c) 2023 owowed. [GNU Affero General Public License, Version 3](LICENS
 
 ---
 
-## coi-serviceworker
-
-JavaScript Library
-
-**Project Source**
-
-https://github.com/gzuidhof/coi-serviceworker
-
-**License**
-
-Copyright (c) 2021 Guido Zuidhof. [MIT License](LICENSE.CSW)
-
-**Note**
-
-*Used in Github Actions for building the game website.*
-
----
-
 ## Dino Game Spritesheet
 
 Game Asset, Spritesheet
@@ -91,3 +73,23 @@ Copyright (c) 2001 The Silkscreen Project Authors. [SIL Open Font License, Versi
 
 - `src/fonts/Silkscreen-Bold.ttf`
 - `src/fonts/Silkscreen-Regular.ttf`
+
+---
+
+## coi-serviceworker
+
+JavaScript Library
+
+**Project Source**
+
+https://github.com/gzuidhof/coi-serviceworker
+
+**License**
+
+Copyright (c) 2021 Guido Zuidhof. [MIT License](LICENSE.CSW)
+
+**Note**
+
+*Used in Github Actions for building the game website.*
+
+---
