@@ -17,6 +17,11 @@ jobs:
       - name: Download godot artifact into public folder
         uses: actions/download-artifact@v3
 
+      - name: Install NPM coi-serviceworker
+        run: |
+          npm i --save coi-serviceworker
+          cp node_modules/coi-serviceworker/coi-serviceworker.min.js dino-game
+
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
