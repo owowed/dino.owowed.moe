@@ -59,11 +59,10 @@ jobs:
           name: github-pages
           path: public
 
-      - name: Extract github-pages tar and moving contents from "." folder
+      - name: Extract github-pages tar
         run: |
           tar -xvf public/artifact.tar -C public
-          mv -f public/./* public
-          rmdir public/.
+          rm public/artifact.tar
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
