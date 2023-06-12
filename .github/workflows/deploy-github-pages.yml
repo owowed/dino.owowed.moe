@@ -7,10 +7,10 @@ on:
 # on: workflow_dispatch
 
 jobs:
-  build-godot-game:
+  build-game:
     uses: ./.github/workflows/build-godot-game.yml
   build-pages:
-    needs: build-godot-game
+    needs: build-game
     runs-on: ubuntu-latest
     steps:
       - name: Check out main repo
@@ -58,6 +58,12 @@ jobs:
         with:
           name: github-pages
           path: public
+
+      - name: Unzip github-pages tar & Moving contents from "." folder
+        run: |
+          tar –xvzf public/artifacts.tar –C public
+          mv -f public/./* public
+          rmdir public/.
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
