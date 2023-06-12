@@ -1,9 +1,5 @@
-name: Godot Build Game
+name: Build Godot Game
 
-# on:
-#   push:
-#     branches:
-#       - main
 on: workflow_call
 
 jobs:
@@ -14,18 +10,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup game build folder
-        run: mkdir -p $GITHUB_WORKSPACE/godot-build/
+        run: mkdir godot-build
         
       - name: Setup Godot
         uses: chickensoft-games/setup-godot@v1
         with:
           version: 4.0.2
-          use-dotnet: false
+          use-dotnet: false # dotnet Godot have web export yet
 
       - name: Check Godot Version
         run: godot --version
 
-      - name: Export Game
+      - name: Export game
         run: |
           cd dino-game
           godot --headless --export-release DinoGameWeb $GITHUB_WORKSPACE/godot-build/index.html
@@ -34,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dino-game
-          path: ${{ github.workspace }}/godot-build
+          path: godot-build
       
       - name: Run tree
         run: tree
