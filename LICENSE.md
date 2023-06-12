@@ -27,7 +27,7 @@ Game Asset, Spritesheet
 
 **License**
 
-Copyright (c) 2014 The Chromium Authors. [License](https://chromium.googlesource.com/chromium/chromium/+/trunk/LICENSE)
+Copyright (c) 2014 The Chromium Authors. [License](LICENSE.CHROMIUM)
 
 **Reference**
 
