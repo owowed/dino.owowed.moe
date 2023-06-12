@@ -16,14 +16,14 @@ jobs:
         uses: chickensoft-games/setup-godot@v1
         with:
           version: 4.0.2
-          use-dotnet: false # dotnet Godot have web export yet
+          use-dotnet: false # Godot 4 DotNET doesnt have web export yet
 
       - name: Check Godot Version
         run: godot --version
 
       - name: Export game
         run: |
-          cd dino-game
+          cd src
           godot --headless --export-release DinoGameWeb $GITHUB_WORKSPACE/godot-build/index.html
 
       - name: Upload game artifact
