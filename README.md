@@ -8,6 +8,8 @@ A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/).
 
 - `src` - the source code for dino-game in Godot 4.
 
+*(Other contents such as build files may be generated through Github Actions.)*
+
 ## License
 
 This project is licensed under [GNU Affero General Public License, Version 3](LICENSE.AGPL3). See the [LICENSE.md][lmd] file for more information.
