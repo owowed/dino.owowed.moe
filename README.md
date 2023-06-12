@@ -10,10 +10,12 @@ A full working game is available on [dino.owowed.moe](https://dino.owowed.moe/).
 
 ## License
 
-This project is licensed under AGPL-3. See the LICENSE file for more information.
+This project is licensed under [GNU Affero General Public License, Version 3](LICENSE.AGPL3). See the [LICENSE.md](lmd) file for more information.
 
-Parts of this project use code from other projects under different open-source licenses. Each of these parts is clearly marked and includes a link to the original project and license in the LICENSE file.
+Parts of this project use code from other projects under different open-source licenses. Each of these parts is clearly marked and includes a link to the original project and license in the [LICENSE.md](lmd) file.
 
-Additionally, this project may include assets with custom license that may restrict commercial use. Please refer to the LICENSE file for more information. 
+Additionally, this project may include assets with custom license that may restrict commercial use. Please refer to the [LICENSE.md](lmd) file for more information. 
 
 Please ensure you read and understand the licenses of all components before using this project, especially if you intend to use it for commercial purposes.
+
+[lmd]: LICENSE.md
