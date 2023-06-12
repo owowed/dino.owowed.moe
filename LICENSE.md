@@ -1,6 +1,6 @@
 # License & Copyright
 
-Listing for libraries and its license(s) used by dino.owowed.moe.
+Listing for libraries and its license(s) used by `owowed/dino.owowed.moe`.
 
 ---
 
