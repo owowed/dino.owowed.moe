@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-godot-game:
-    uses: ./.github/workflows/godot-game-build.yml
+    uses: ./.github/workflows/build-godot-game.yml
   build-pages:
     needs: build-godot-game
     runs-on: ubuntu-latest
@@ -45,3 +45,25 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+  publish-branch:
+    needs: build-pages
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Download github-pages artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: github-pages
+          path: public
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+            fqdn: dino.owowed.moe
+            target_branch: gh-pages
+            build_dir: public
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
