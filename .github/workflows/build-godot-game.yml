@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out main repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Setup game build folder
         run: mkdir godot-build
@@ -30,7 +30,7 @@ jobs:
         run: cp -v LICENSE* godot-build
 
       - name: Upload game artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dino-game
           path: godot-build

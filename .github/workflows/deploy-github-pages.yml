@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download godot artifact into public folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
 
       - name: Install NPM coi-serviceworker
         run: |
@@ -26,7 +26,7 @@ jobs:
           cp node_modules/coi-serviceworker/coi-serviceworker.min.js dino-game
 
       - name: Upload github-pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dino-game
         
@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
 
   publish-branch:
     needs: build-pages
@@ -59,7 +59,7 @@ jobs:
     
     steps:
       - name: Download github-pages artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: github-pages
           path: public
@@ -70,7 +70,7 @@ jobs:
           rm public/artifact.tar
 
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v3
+        uses: crazy-max/ghaction-github-pages@v4
         with:
             fqdn: dino.owowed.moe
             target_branch: gh-pages
