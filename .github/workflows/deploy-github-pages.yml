@@ -31,7 +31,7 @@ jobs:
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: dino-game
+          path: .
 
   publish:
     needs: build-pages
