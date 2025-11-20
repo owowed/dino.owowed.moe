@@ -2,7 +2,7 @@ class_name Dino
 extends CharacterBody2D
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -360.0
+const JUMP_VELOCITY = -400.0
 
 const GRAVITY_MULTIPLIER = 2
 const CROUCH_GRAVITY_MULTIPLIER = 2

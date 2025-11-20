@@ -108,4 +108,3 @@ func spawn_random_milk(x: Array[float], y: Array[float], amount: int):
 		
 		milk.position = dino.position + vec
 		$Milks.add_child(milk)
-

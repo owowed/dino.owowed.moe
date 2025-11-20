@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxprf3cmqm3aj"]
 
-[ext_resource type="Script" path="res://scene_scripts/DeveloperConsole.gd" id="1_osu66"]
-[ext_resource type="Script" path="res://scene_scripts/DeveloperConsole_LineEdit.gd" id="2_2kibf"]
+[ext_resource type="Script" uid="uid://bt0hqhxf4fj7c" path="res://scene_scripts/DeveloperConsole.gd" id="1_osu66"]
+[ext_resource type="Script" uid="uid://b447lwhhlgx12" path="res://scene_scripts/DeveloperConsole_LineEdit.gd" id="2_2kibf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ec61"]
 line_spacing = -0.8
@@ -39,6 +39,7 @@ offset_right = 1132.0
 offset_bottom = 222.0
 
 [node name="Label" type="Label" parent="CommandList"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_7ec61")
 autowrap_mode = 3

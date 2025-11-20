@@ -13,9 +13,9 @@ jobs:
         run: mkdir godot-build
         
       - name: Setup Godot
-        uses: chickensoft-games/setup-godot@v1
+        uses: chickensoft-games/setup-godot@v2
         with:
-          version: 4.0.2
+          version: 4.5.1
           use-dotnet: false # Godot 4 DotNET doesnt have web export yet
 
       - name: Check Godot Version

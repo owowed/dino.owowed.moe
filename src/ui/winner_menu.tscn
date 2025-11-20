@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkiplpekmn1do"]
+
+[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="1_ghppo"]
+
+[node name="WinnerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 250.0
+offset_right = 750.0
+offset_bottom = 450.0
+
+[node name="YouWin" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ghppo")
+theme_override_font_sizes/font_size = 32
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ghppo")
+theme_override_font_sizes/font_size = 24
+text = "Final Score: 0000"
+horizontal_alignment = 1
