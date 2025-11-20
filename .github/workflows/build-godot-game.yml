@@ -17,6 +17,7 @@ jobs:
         with:
           version: 4.5.1
           use-dotnet: false # Godot 4 DotNET doesnt have web export yet
+          include-templates: true
 
       - name: Check Godot Version
         run: godot --version
