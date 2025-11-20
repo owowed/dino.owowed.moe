@@ -24,14 +24,14 @@ jobs:
         run: |
           npm i --save coi-serviceworker
           cp node_modules/coi-serviceworker/coi-serviceworker.min.js dino-game
+        
+      - name: Run tree
+        run: tree
 
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: dino-game
-        
-      - name: Run tree
-        run: tree
 
   publish:
     needs: build-pages
