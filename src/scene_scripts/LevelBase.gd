@@ -1,11 +1,11 @@
 class_name LevelBase
 extends Node2D
 
-const Milk = preload("res://entities/Milk.tscn")
+const MILK_SCENE = preload("res://entities/Milk.tscn")
 
 @export var dino: Dino
 @export var main_camera: Camera2D
-@export var winner_menu: WinnerMenu
+@export var winner_menu: Node
 @export var world_map_scene: String = "res://places/WorldMap.tscn"
 
 @onready var levelvar = LevelVar.new({
@@ -62,8 +62,8 @@ func _process(_delta):
 			levelvar.get_var("camera_zoom_y"))
 
 
-func command_handler(name, value):
-	match name:
+func command_handler(command_name, value):
+	match command_name:
 		"spawn_random_milk", "spwrm":
 			spawn_random_milk(
 				[-1500, 1500],
@@ -112,7 +112,7 @@ func command_handler(name, value):
 func spawn_random_milk(x: Array[float], y: Array[float], amount: int):
 	for i in range(0, amount):
 		var vec = Vector2(randf_range(x[0], x[1]), randf_range(y[0], y[1]))
-		var milk = Milk.instantiate()
+		var milk = MILK_SCENE.instantiate()
 
 		milk.position = dino.position + vec
 		$Milks.add_child(milk)

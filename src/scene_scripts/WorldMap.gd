@@ -31,9 +31,9 @@ func _process(_delta: float) -> void:
 func _clamp_player() -> void:
 	if world_player == null:
 		return
-	var min := map_bounds.position
-	var max := map_bounds.position + map_bounds.size
-	world_player.global_position = world_player.global_position.clamp(min, max)
+	var min_bound := map_bounds.position
+	var max_bound := map_bounds.position + map_bounds.size
+	world_player.global_position = world_player.global_position.clamp(min_bound, max_bound)
 
 func _on_node_focus(node: WorldLevelNode) -> void:
 	_active_node = node

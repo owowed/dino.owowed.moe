@@ -1,6 +1,6 @@
 extends Camera2D
 
-func _process(delta):
+func _process(_delta):
 	position = -get_dino_center_pos()
 	position.y = -270
 	
