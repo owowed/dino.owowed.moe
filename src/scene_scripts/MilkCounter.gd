@@ -3,7 +3,7 @@ extends Control
 @onready var dino: Dino = get_owner().get_node("Dino")
 @onready var labels = $HBoxContainer.get_children()
 
-func _process(delta):
+func _process(_delta):
 	$HBoxContainer/MilkCounter.text = str(dino.coin)
 	
 func _on_dino_ten_coin_reached():

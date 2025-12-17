@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scene_scripts/WorldLevelNode.gd" id="1_tr2ln"]
+[ext_resource type="Texture2D" uid="uid://cai2amlwhxm1k" path="res://assets/trophy.png" id="2_haeno"]
+[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="3_mc8ru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuowo"]
+radius = 18.0
+
+[node name="WorldLevelNode" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_tr2ln")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_haeno")
+centered = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -70.0
+offset_top = 24.0
+offset_right = 70.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("3_mc8ru")
+theme_override_font_sizes/font_size = 18
+text = "Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yuowo")

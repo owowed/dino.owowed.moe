@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scene_scripts/WorldMap.gd" id="1_7fw7i"]
+[ext_resource type="PackedScene" path="res://entities/WorldPlayer.tscn" id="2_ji3e6"]
+[ext_resource type="PackedScene" path="res://entities/WorldLevelNode.tscn" id="3_3e3wg"]
+[ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="4_aqyfy"]
+[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="5_8on8y"]
+
+[node name="WorldMap" type="Node2D"]
+script = ExtResource("1_7fw7i")
+world_player = NodePath("WorldPlayer")
+level_label = NodePath("UI/PanelContainer/VBoxContainer/LevelLabel")
+prompt_label = NodePath("UI/PanelContainer/VBoxContainer/PromptLabel")
+map_bounds = Rect2(-480, -270, 960, 540)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-480, -270)
+texture = ExtResource("4_aqyfy")
+centered = false
+
+[node name="LevelNodes" type="Node2D" parent="."]
+
+[node name="RunnerDesert" parent="LevelNodes" instance=ExtResource("3_3e3wg")]
+position = Vector2(-140, 10)
+level_scene = "res://places/RunnerDesert.tscn"
+level_name = "Runner Desert"
+
+[node name="ComingSoon" parent="LevelNodes" instance=ExtResource("3_3e3wg")]
+position = Vector2(200, -60)
+level_name = "Coming Soon"
+unlocked = false
+
+[node name="WorldPlayer" parent="." instance=ExtResource("2_ji3e6")]
+position = Vector2(-320, 60)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 292.0
+offset_bottom = 120.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 100.0
+theme_override_constants/separation = 6
+
+[node name="LevelLabel" type="Label" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8on8y")
+theme_override_font_sizes/font_size = 20
+text = "Walk up to a level node"
+horizontal_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8on8y")
+theme_override_font_sizes/font_size = 16
+text = "Press Space/Enter to play"
+horizontal_alignment = 1
+visible = false
+
+[node name="HintLabel" type="Label" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8on8y")
+theme_override_font_sizes/font_size = 14
+text = "Move with arrows or WASD"
+horizontal_alignment = 1
