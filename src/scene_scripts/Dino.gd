@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const COYOTE_TIME = 0.1
+const JUMP_BUFFER_TIME = 0.12
 const ACCELERATION = 1800.0
 const DECELERATION = 2200.0
 
@@ -32,6 +34,8 @@ var deaths = 0
 var no_gravity = false
 var superspeed = false
 var flying = false
+var coyote_timer: float = 0.0
+var jump_buffer_timer: float = 0.0
 
 signal ten_coin_reached()
 
@@ -51,10 +55,10 @@ func add_coin(num: int = 1):
 
 func _physics_process(delta: float):
 	if died: return
+	_update_jump_timers(delta)
 	if not is_on_floor():
 		process_gravity(delta)
-	if Input.is_action_just_pressed("player.jump") and (is_on_floor() or flying):
-		jump()
+	_try_jump()
 
 	var direction = Input.get_axis("player.move.left", "player.move.right")
 	move(direction)
@@ -116,6 +120,25 @@ func move(direction: float):
 	moving = absf(velocity.x) > 0
 	$StandingCollision.disabled = crouching
 	$CrouchingCollision.disabled = !crouching
+
+func _update_jump_timers(delta: float) -> void:
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer = max(coyote_timer - delta, 0.0)
+	if Input.is_action_just_pressed("player.jump") or (Input.is_action_pressed("player.jump") and is_on_floor()):
+		jump_buffer_timer = JUMP_BUFFER_TIME
+	else:
+		jump_buffer_timer = max(jump_buffer_timer - delta, 0.0)
+
+func _try_jump() -> void:
+	if not can_move:
+		return
+	var can_jump_now := flying or coyote_timer > 0.0
+	if can_jump_now and jump_buffer_timer > 0.0:
+		jump()
+		jump_buffer_timer = 0.0
+		coyote_timer = 0.0
 
 func die():
 	deaths += 1
