@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scene_scripts/LevelBase.gd" id="1_30s2r"]
+[ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_rpsm8"]
+[ext_resource type="PackedScene" path="res://ui/MilkCounter.tscn" id="3_pvy0o"]
+[ext_resource type="PackedScene" path="res://ui/DeveloperConsole.tscn" id="4_5j5oc"]
+[ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="5_d1bp5"]
+[ext_resource type="PackedScene" path="res://ui/winner_menu.tscn" id="6_hc77g"]
+[ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="7_qw0ug"]
+[ext_resource type="Script" path="res://scene_scripts/Dino_Camera2D.gd" id="8_zuohw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ix1"]
+size = Vector2(800, 40)
+
+[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("dino", "main_camera")]
+script = ExtResource("1_30s2r")
+dino = NodePath("Dino")
+main_camera = NodePath("Dino/Camera2D")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_rpsm8")
+stretch_mode = 1
+
+[node name="HUD" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="MilkCounter" parent="HUD" instance=ExtResource("3_pvy0o")]
+
+[node name="DeveloperConsole" parent="HUD" instance=ExtResource("4_5j5oc")]
+visible = false
+dino = NodePath("../../Dino")
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("5_d1bp5")]
+
+[node name="WinnerMenu" parent="HUD" instance=ExtResource("6_hc77g")]
+visible = false
+
+[node name="Dino" parent="." instance=ExtResource("7_qw0ug")]
+position = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Dino"]
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("8_zuohw")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 200)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_a0ix1")
+debug_color = Color(0.596078, 0.521569, 0.447059, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -400.0
+offset_top = -20.0
+offset_right = 400.0
+offset_bottom = 20.0
+color = Color(0.438152, 0.527013, 0.372192, 1)
+
+[node name="Milks" type="Node2D" parent="."]

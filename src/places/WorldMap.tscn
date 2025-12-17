@@ -11,6 +11,7 @@ script = ExtResource("1_7fw7i")
 world_player = NodePath("WorldPlayer")
 level_label = NodePath("UI/PanelContainer/VBoxContainer/LevelLabel")
 prompt_label = NodePath("UI/PanelContainer/VBoxContainer/PromptLabel")
+prompt_dialog = NodePath("UI/LevelPrompt")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-480, -270)
@@ -52,11 +53,10 @@ text = "Walk up to a level node"
 horizontal_alignment = 1
 
 [node name="PromptLabel" type="Label" parent="UI/PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_8on8y")
 theme_override_font_sizes/font_size = 16
-text = "Press Space/Enter to play"
+text = "Press Space/Enter to choose"
 horizontal_alignment = 1
 
 [node name="HintLabel" type="Label" parent="UI/PanelContainer/VBoxContainer"]
@@ -65,3 +65,8 @@ theme_override_fonts/font = ExtResource("5_8on8y")
 theme_override_font_sizes/font_size = 14
 text = "Move with arrows or WASD"
 horizontal_alignment = 1
+
+[node name="LevelPrompt" type="ConfirmationDialog" parent="UI"]
+size = Vector2i(320, 120)
+ok_button_text = "Play"
+dialog_text = "Play selected level?"
