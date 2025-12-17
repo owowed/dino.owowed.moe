@@ -1,2 +1,2 @@
 class_name RunnerDesert
-extends LevelBase
+extends "res://scene_scripts/LevelBase.gd"
