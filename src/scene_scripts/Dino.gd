@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const ACCELERATION = 1800.0
+const DECELERATION = 2200.0
 
 const GRAVITY_MULTIPLIER = 2
 const CROUCH_GRAVITY_MULTIPLIER = 2
@@ -98,15 +100,11 @@ func move(direction: float):
 			sprinting = true
 			offset *= SPRINT_SPEED_MULTIPLIER
 		
-		if superspeed:
-			velocity.x += offset
-		else:
-			velocity.x = offset
+		var accel_step := ACCELERATION * (1.5 if superspeed else 1.0) * get_physics_process_delta_time()
+		velocity.x = move_toward(velocity.x, offset, accel_step)
 	else:
-		if is_on_floor() or absf(velocity.x) < absf(SPEED):
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-		else:
-			velocity.x = move_toward(velocity.x, 0, 1)
+		var decel_step := DECELERATION * get_physics_process_delta_time()
+		velocity.x = move_toward(velocity.x, 0, decel_step)
 			
 		if Input.is_action_pressed("player.crouch"):
 			$AnimatedSprite2D.animation = "crouching"

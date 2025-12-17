@@ -5,6 +5,8 @@ const Milk = preload("res://entities/Milk.tscn")
 
 @export var dino: Dino
 @export var main_camera: Camera2D
+@export var winner_menu: WinnerMenu
+@export var world_map_scene: String = "res://places/WorldMap.tscn"
 
 @onready var levelvar = LevelVar.new({
 	"spawn_random_milk": TYPE_INT,
@@ -37,8 +39,14 @@ const Milk = preload("res://entities/Milk.tscn")
 	"debuginfo": [TYPE_STRING, "levelvar"]
 })
 
+var _level_completed := false
+
 func _ready():
 	levelvar.levelvar_changed.connect(command_handler)
+	if winner_menu == null and has_node("HUD/WinnerMenu"):
+		winner_menu = $HUD/WinnerMenu
+	for goal in get_tree().get_nodes_in_group("level_goal"):
+		goal.goal_reached.connect(complete_level)
 
 func _process(_delta):
 	if levelvar.get_var("levelvar_bind"):
@@ -108,3 +116,20 @@ func spawn_random_milk(x: Array[float], y: Array[float], amount: int):
 
 		milk.position = dino.position + vec
 		$Milks.add_child(milk)
+
+func complete_level():
+	if _level_completed:
+		return
+	_level_completed = true
+	dino.can_move = false
+	dino.velocity = Vector2.ZERO
+	if winner_menu and winner_menu.has_method("show_win"):
+		winner_menu.show_win(_calculate_score(), func(): _go_to_world_map())
+	else:
+		_go_to_world_map()
+
+func _calculate_score() -> int:
+	return dino.coin
+
+func _go_to_world_map():
+	get_tree().change_scene_to_file(world_map_scene)

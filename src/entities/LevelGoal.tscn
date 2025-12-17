@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bey7h1nusjbgx"]
+
+[ext_resource type="Script" uid="uid://bjsbs1h41ib45" path="res://scene_scripts/LevelGoal.gd" id="1_q8jge"]
+[ext_resource type="Texture2D" uid="uid://cai2amlwhxm1k" path="res://assets/trophy.png" id="2_oy31u"]
+[ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="3_hyukq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5txqj"]
+size = Vector2(44, 56)
+
+[node name="LevelGoal" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_q8jge")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.9073486e-06, -21.000002)
+scale = Vector2(1.28125, 1.28125)
+texture = ExtResource("2_oy31u")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -90.0
+offset_top = -74.0
+offset_right = 90.0
+offset_bottom = -46.0
+theme_override_fonts/font = ExtResource("3_hyukq")
+theme_override_font_sizes/font_size = 16
+text = "Level Finish"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_5txqj")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scene_scripts/LevelBase.gd" id="1_30s2r"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_rpsm8"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://ui/winner_menu.tscn" id="6_hc77g"]
 [ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="7_qw0ug"]
 [ext_resource type="Script" path="res://scene_scripts/Dino_Camera2D.gd" id="8_zuohw"]
+[ext_resource type="PackedScene" path="res://entities/LevelGoal.tscn" id="9_t0hok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ix1"]
 size = Vector2(800, 40)
@@ -16,6 +17,7 @@ size = Vector2(800, 40)
 script = ExtResource("1_30s2r")
 dino = NodePath("Dino")
 main_camera = NodePath("Dino/Camera2D")
+winner_menu = NodePath("HUD/WinnerMenu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -640.0
@@ -63,5 +65,8 @@ offset_top = -20.0
 offset_right = 400.0
 offset_bottom = 20.0
 color = Color(0.438152, 0.527013, 0.372192, 1)
+
+[node name="LevelGoal" parent="." instance=ExtResource("9_t0hok")]
+position = Vector2(320, 120)
 
 [node name="Milks" type="Node2D" parent="."]

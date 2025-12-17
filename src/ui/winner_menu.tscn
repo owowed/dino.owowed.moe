@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkiplpekmn1do"]
+[gd_scene load_steps=3 format=3 uid="uid://bkiplpekmn1do"]
 
 [ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="1_ghppo"]
+[ext_resource type="Script" path="res://scene_scripts/WinnerMenu.gd" id="2_nglaq"]
 
 [node name="WinnerMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_nglaq")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -14,6 +16,7 @@ offset_left = 450.0
 offset_top = 250.0
 offset_right = 750.0
 offset_bottom = 450.0
+theme_override_constants/separation = 12
 
 [node name="YouWin" type="Label" parent="HBoxContainer"]
 layout_mode = 2
@@ -28,3 +31,11 @@ theme_override_fonts/font = ExtResource("1_ghppo")
 theme_override_font_sizes/font_size = 24
 text = "Final Score: 0000"
 horizontal_alignment = 1
+
+[node name="BackToMap" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ghppo")
+theme_override_font_sizes/font_size = 18
+text = "Back to World Map"
+
+[connection signal="pressed" from="HBoxContainer/BackToMap" to="." method="_on_back_to_map_pressed"]
