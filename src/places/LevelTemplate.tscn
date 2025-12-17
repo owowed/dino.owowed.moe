@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scene_scripts/LevelBase.gd" id="1_30s2r"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_rpsm8"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="5_d1bp5"]
 [ext_resource type="PackedScene" path="res://ui/winner_menu.tscn" id="6_hc77g"]
 [ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="7_qw0ug"]
-[ext_resource type="Script" path="res://scene_scripts/Dino_Camera2D.gd" id="8_zuohw"]
 [ext_resource type="PackedScene" path="res://entities/LevelGoal.tscn" id="9_t0hok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ix1"]
@@ -43,12 +42,6 @@ visible = false
 
 [node name="Dino" parent="." instance=ExtResource("7_qw0ug")]
 position = Vector2(0, 0)
-
-[node name="Camera2D" type="Camera2D" parent="Dino"]
-zoom = Vector2(1.5, 1.5)
-process_callback = 0
-position_smoothing_enabled = true
-script = ExtResource("8_zuohw")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 200)

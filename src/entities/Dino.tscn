@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjuwk12hqmbj2"]
+[gd_scene load_steps=19 format=3 uid="uid://cjuwk12hqmbj2"]
 
-[ext_resource type="Script" path="res://scene_scripts/Dino.gd" id="1_c6ge0"]
+[ext_resource type="Script" uid="uid://2ypwevtk4xjx" path="res://scene_scripts/Dino.gd" id="1_c6ge0"]
 [ext_resource type="Texture2D" uid="uid://b6cgafu8lwbri" path="res://assets/dino.png" id="2_ruhek"]
 [ext_resource type="AudioStream" uid="uid://5amqai4hifkh" path="res://audio/die.wav" id="3_4jr3n"]
 [ext_resource type="AudioStream" uid="uid://djue6o7m4nb8y" path="res://audio/jump.wav" id="4_msigy"]
 [ext_resource type="AudioStream" uid="uid://bfmhlfyi0qbbt" path="res://audio/point.wav" id="5_drar3"]
+[ext_resource type="Script" uid="uid://dhhf7tnd81wnc" path="res://scene_scripts/DinoCamera.gd" id="6_v1h5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1onx"]
 size = Vector2(44, 47.875)
@@ -99,24 +100,15 @@ z_index = 1000
 collision_mask = 2
 script = ExtResource("1_c6ge0")
 
-[node name="StandingCollision" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(-20, 6, -12, 23, 6, 23, 8, -6, 20, -11, 20, -21, 0, -21, 0, -6, -20, -6)
-
-[node name="StandingCollision2" type="CollisionShape2D" parent="."]
+[node name="StandingCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_s1onx")
-disabled = true
 
-[node name="CrouchingCollision" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-27, 1, -17, 23, 2, 23, 27, 8, 27, -2, -27, -4)
-
-[node name="CrouchingCollision3" type="CollisionShape2D" parent="."]
+[node name="CrouchingCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(4, 8.71875)
 shape = SubResource("RectangleShape2D_jj04q")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_202op")
@@ -143,3 +135,8 @@ volume_db = -5.0
 [node name="TenPointAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_drar3")
 volume_db = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -16)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("6_v1h5t")

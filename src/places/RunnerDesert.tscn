@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=4 uid="uid://dl26e3j7b33l1"]
+[gd_scene load_steps=16 format=4 uid="uid://dl26e3j7b33l1"]
 
 [ext_resource type="Script" uid="uid://h1bvcuk0j265" path="res://scene_scripts/RunnerDesert.gd" id="1_8emqa"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_j6j7q"]
 [ext_resource type="PackedScene" path="res://ui/MilkCounter.tscn" id="2_t5f1y"]
 [ext_resource type="PackedScene" uid="uid://dxprf3cmqm3aj" path="res://ui/DeveloperConsole.tscn" id="4_444oy"]
 [ext_resource type="PackedScene" uid="uid://ylxdtsus8qsr" path="res://ui/PauseMenu.tscn" id="4_gd7gn"]
-[ext_resource type="Script" uid="uid://cvpg5johbpi36" path="res://scene_scripts/Dino_Camera2D.gd" id="6_8a5b4"]
 [ext_resource type="PackedScene" uid="uid://cjuwk12hqmbj2" path="res://entities/Dino.tscn" id="6_ft2mo"]
 [ext_resource type="PackedScene" uid="uid://bkiplpekmn1do" path="res://ui/winner_menu.tscn" id="6_l75sy"]
 [ext_resource type="PackedScene" uid="uid://bslehltw0q2p6" path="res://entities/Milk.tscn" id="7_su0sb"]
@@ -325,13 +324,6 @@ visible = false
 
 [node name="Dino" parent="." instance=ExtResource("6_ft2mo")]
 position = Vector2(566.1678, 615.6509)
-
-[node name="Camera2D" type="Camera2D" parent="Dino"]
-anchor_mode = 0
-zoom = Vector2(1.5, 1.5)
-process_callback = 0
-position_smoothing_enabled = true
-script = ExtResource("6_8a5b4")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(697, 230)
