@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dl26e3j7b33l1"]
+[gd_scene load_steps=17 format=4 uid="uid://dl26e3j7b33l1"]
 
 [ext_resource type="Script" uid="uid://h1bvcuk0j265" path="res://scene_scripts/RunnerDesert.gd" id="1_8emqa"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_j6j7q"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bkiplpekmn1do" path="res://ui/winner_menu.tscn" id="6_l75sy"]
 [ext_resource type="PackedScene" uid="uid://bslehltw0q2p6" path="res://entities/Milk.tscn" id="7_su0sb"]
 [ext_resource type="Texture2D" uid="uid://dvyj6fwxasr7w" path="res://assets/terrain.png" id="8_6ujnx"]
+[ext_resource type="PackedScene" path="res://entities/FlyingEnemy.tscn" id="9_mvmju"]
 [ext_resource type="PackedScene" uid="uid://bey7h1nusjbgx" path="res://entities/LevelGoal.tscn" id="11_mvmju"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_baoy2"]
@@ -445,6 +446,15 @@ position = Vector2(500, 284)
 
 [node name="Milk5" parent="Milks" instance=ExtResource("7_su0sb")]
 position = Vector2(803, 471)
+
+[node name="FlyingEnemy" parent="Milks" instance=ExtResource("9_mvmju")]
+position = Vector2(336, -19)
+
+[node name="FlyingEnemy2" parent="Milks" instance=ExtResource("9_mvmju")]
+position = Vector2(623, -45)
+
+[node name="FlyingEnemy3" parent="Milks" instance=ExtResource("9_mvmju")]
+position = Vector2(798, 256)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)

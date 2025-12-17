@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scene_scripts/FlyingEnemy.gd" id="1_xyrbn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b75tr"]
+size = Vector2(42, 28)
+
+[node name="FlyingEnemy" type="Area2D"]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("1_xyrbn")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.941176, 0.305882, 0.305882, 1)
+polygon = PackedVector2Array(-22, -14, 22, -14, 22, 14, -22, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b75tr")

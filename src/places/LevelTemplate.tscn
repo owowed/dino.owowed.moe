@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scene_scripts/LevelBase.gd" id="1_30s2r"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_rpsm8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="5_d1bp5"]
 [ext_resource type="PackedScene" path="res://ui/winner_menu.tscn" id="6_hc77g"]
 [ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="7_qw0ug"]
+[ext_resource type="PackedScene" path="res://entities/FlyingEnemy.tscn" id="8_tzlxv"]
 [ext_resource type="PackedScene" path="res://entities/LevelGoal.tscn" id="9_t0hok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ix1"]
@@ -61,5 +62,8 @@ color = Color(0.438152, 0.527013, 0.372192, 1)
 
 [node name="LevelGoal" parent="." instance=ExtResource("9_t0hok")]
 position = Vector2(320, 120)
+
+[node name="FlyingEnemy" parent="." instance=ExtResource("8_tzlxv")]
+position = Vector2(200, 120)
 
 [node name="Milks" type="Node2D" parent="."]

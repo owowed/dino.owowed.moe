@@ -4,8 +4,10 @@ extends Area2D
 
 func _on_area_entered(_area):
 	var areas = get_overlapping_areas()
-	var dino = areas[0].get_parent() as Dino
-	
-	dino.add_coin()
-	milk.queue_free()
+	for area in areas:
+		var parent = area.get_parent()
+		if parent is Dino:
+			(parent as Dino).add_coin()
+			milk.queue_free()
+			return
 	
