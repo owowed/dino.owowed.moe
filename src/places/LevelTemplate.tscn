@@ -1,15 +1,15 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3 uid="uid://dj423eduf8xfp"]
 
-[ext_resource type="Script" path="res://scene_scripts/LevelBase.gd" id="1_30s2r"]
+[ext_resource type="Script" uid="uid://di1f8clnhahcw" path="res://scene_scripts/LevelBase.gd" id="1_30s2r"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_rpsm8"]
 [ext_resource type="PackedScene" path="res://ui/MilkCounter.tscn" id="3_pvy0o"]
-[ext_resource type="PackedScene" path="res://ui/DeveloperConsole.tscn" id="4_5j5oc"]
-[ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="5_d1bp5"]
-[ext_resource type="PackedScene" path="res://ui/winner_menu.tscn" id="6_hc77g"]
-[ext_resource type="PackedScene" path="res://entities/Dino.tscn" id="7_qw0ug"]
+[ext_resource type="PackedScene" uid="uid://dxprf3cmqm3aj" path="res://ui/DeveloperConsole.tscn" id="4_5j5oc"]
+[ext_resource type="PackedScene" uid="uid://ylxdtsus8qsr" path="res://ui/PauseMenu.tscn" id="5_d1bp5"]
+[ext_resource type="PackedScene" uid="uid://bkiplpekmn1do" path="res://ui/winner_menu.tscn" id="6_hc77g"]
+[ext_resource type="PackedScene" uid="uid://cjuwk12hqmbj2" path="res://entities/Dino.tscn" id="7_qw0ug"]
 [ext_resource type="PackedScene" path="res://entities/FlyingEnemy.tscn" id="8_tzlxv"]
-[ext_resource type="PackedScene" path="res://entities/GroundEnemy.tscn" id="9_2bstd"]
-[ext_resource type="PackedScene" path="res://entities/LevelGoal.tscn" id="9_t0hok"]
+[ext_resource type="PackedScene" uid="uid://bavb5s2vtduds" path="res://entities/GroundEnemy.tscn" id="9_2bstd"]
+[ext_resource type="PackedScene" uid="uid://bey7h1nusjbgx" path="res://entities/LevelGoal.tscn" id="9_t0hok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ix1"]
 size = Vector2(800, 40)
@@ -37,13 +37,14 @@ follow_viewport_scale = 0.001
 visible = false
 dino = NodePath("../../Dino")
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource("5_d1bp5")]
+[node name="PauseMenu" parent="HUD" node_paths=PackedStringArray("developer_console") instance=ExtResource("5_d1bp5")]
+developer_console = NodePath("../DeveloperConsole")
 
 [node name="WinnerMenu" parent="HUD" instance=ExtResource("6_hc77g")]
 visible = false
 
 [node name="Dino" parent="." instance=ExtResource("7_qw0ug")]
-position = Vector2(0, 0)
+position = Vector2(-321, 124)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 200)
@@ -68,7 +69,7 @@ position = Vector2(320, 120)
 position = Vector2(200, 120)
 
 [node name="GroundEnemy" parent="." instance=ExtResource("9_2bstd")]
-position = Vector2(-180, 152)
+position = Vector2(255, 141)
 target_path = NodePath("../Dino")
 
 [node name="Milks" type="Node2D" parent="."]

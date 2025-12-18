@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ylxdtsus8qsr"]
 
-[ext_resource type="Script" path="res://scene_scripts/PauseMenu.gd" id="1_p04jc"]
+[ext_resource type="Script" uid="uid://cdil3u3dbm4gf" path="res://scene_scripts/PauseMenu.gd" id="1_p04jc"]
 
 [sub_resource type="Theme" id="Theme_wrkf3"]
 
@@ -31,7 +31,7 @@ text = "Quit
 "
 
 [node name="DevConsole" type="Button" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 975.0
 offset_top = 526.0
 offset_right = 1128.0

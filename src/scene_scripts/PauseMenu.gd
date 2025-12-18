@@ -1,6 +1,6 @@
 extends Control
 
-@onready var developer_console = get_owner().get_node("CanvasLayer/DeveloperConsole")
+@export var developer_console: Control
 
 var active = false:
 	get: return active
@@ -22,4 +22,5 @@ func _on_quit_pressed():
 		JavaScriptBridge.eval('alert("Game exited!")')
 
 func _on_dev_console_pressed():
-	developer_console.active = !developer_console.active
+	if developer_console != null:
+		developer_console.active = !developer_console.active
