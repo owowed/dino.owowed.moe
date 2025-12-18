@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bavb5s2vtduds"]
+
+[ext_resource type="Script" uid="uid://d1r4ht5ycom0i" path="res://scene_scripts/GroundEnemy.gd" id="1_rj0vs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3vyx"]
+size = Vector2(36, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hhux"]
+size = Vector2(32, 20)
+
+[node name="GroundEnemy" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_rj0vs")
+
+[node name="Sprite" type="Polygon2D" parent="."]
+color = Color(0.333333, 0.568627, 0.956863, 1)
+polygon = PackedVector2Array(-18, -12, 18, -12, 18, 12, -18, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e3vyx")
+
+[node name="FloorRayLeft" type="RayCast2D" parent="."]
+position = Vector2(-14, 12)
+target_position = Vector2(0, 28)
+collision_mask = 2
+
+[node name="FloorRayRight" type="RayCast2D" parent="."]
+position = Vector2(14, 12)
+target_position = Vector2(0, 28)
+collision_mask = 2
+
+[node name="SightRay" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_1hhux")
