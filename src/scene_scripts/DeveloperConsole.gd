@@ -2,7 +2,7 @@ extends Control
 
 @export var dino: Dino
 @onready var line_edit: LineEdit = $VBoxContainer/LineEdit
-@onready var level: RunnerDesert = get_owner()
+@onready var level: LevelBase = get_owner()
 
 var active = false:
 	get: return active

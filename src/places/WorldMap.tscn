@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dc43w7v4e72o5"]
 
 [ext_resource type="Script" uid="uid://dk2a0kkg3o5al" path="res://scene_scripts/WorldMap.gd" id="1_7fw7i"]
-[ext_resource type="PackedScene" path="res://entities/WorldPlayer.tscn" id="2_ji3e6"]
-[ext_resource type="PackedScene" path="res://entities/WorldLevelNode.tscn" id="3_3e3wg"]
+[ext_resource type="PackedScene" uid="uid://b2rmceqs3gith" path="res://entities/WorldPlayer.tscn" id="2_ji3e6"]
+[ext_resource type="PackedScene" uid="uid://isgqkvyvdjmr" path="res://entities/WorldLevelNode.tscn" id="3_3e3wg"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="4_aqyfy"]
 [ext_resource type="FontFile" uid="uid://c68tq3kc7ck3" path="res://fonts/Silkscreen-Regular.ttf" id="5_8on8y"]
 
@@ -22,13 +22,13 @@ centered = false
 
 [node name="RunnerDesert" parent="LevelNodes" instance=ExtResource("3_3e3wg")]
 position = Vector2(-140, 10)
-level_scene = "res://places/RunnerDesert.tscn"
+level_scene = "uid://dl26e3j7b33l1"
 level_name = "Runner Desert"
 
 [node name="ComingSoon" parent="LevelNodes" instance=ExtResource("3_3e3wg")]
 position = Vector2(200, -60)
-level_name = "Coming Soon"
-unlocked = false
+level_scene = "res://places/LevelTemplate.tscn"
+level_name = "Level Template"
 
 [node name="WorldPlayer" parent="." instance=ExtResource("2_ji3e6")]
 position = Vector2(-320, 60)
