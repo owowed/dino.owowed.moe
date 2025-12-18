@@ -147,7 +147,6 @@ func die():
 	$DieAudio.play()
 	$AnimatedSprite2D.play("die")
 	await $AnimatedSprite2D.animation_looped
-	coin -= 5
 	respawn()
 	
 func respawn():
