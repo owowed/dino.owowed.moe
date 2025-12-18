@@ -1,8 +1,8 @@
 class_name WinnerMenu
 extends Control
 
-@onready var final_score_label: Label = $HBoxContainer/FinalScore
-@onready var back_button: Button = $HBoxContainer/BackToMap
+@onready var final_score_label: Label = $PanelContainer/VBoxContainer/FinalScore
+@onready var back_button: Button = $PanelContainer/VBoxContainer/BackToMap
 
 var _back_callback: Callable
 

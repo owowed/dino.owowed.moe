@@ -132,4 +132,10 @@ func _calculate_score() -> int:
 	return dino.coin
 
 func _go_to_world_map():
-	get_tree().change_scene_to_file(world_map_scene)
+	var scene_path := world_map_scene
+	if scene_path.contains("::"):
+		scene_path = scene_path.split("::")[0]
+	if ResourceLoader.exists(scene_path):
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		push_warning("World map scene not found: %s" % scene_path)
