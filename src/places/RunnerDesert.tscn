@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dl26e3j7b33l1"]
+[gd_scene load_steps=18 format=4 uid="uid://dl26e3j7b33l1"]
 
 [ext_resource type="Script" uid="uid://h1bvcuk0j265" path="res://scene_scripts/RunnerDesert.gd" id="1_8emqa"]
 [ext_resource type="Texture2D" uid="uid://d2dawjnnask0w" path="res://assets/background_green.png" id="2_j6j7q"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bslehltw0q2p6" path="res://entities/Milk.tscn" id="7_su0sb"]
 [ext_resource type="Texture2D" uid="uid://dvyj6fwxasr7w" path="res://assets/terrain.png" id="8_6ujnx"]
 [ext_resource type="PackedScene" path="res://entities/FlyingEnemy.tscn" id="9_mvmju"]
+[ext_resource type="PackedScene" uid="uid://bavb5s2vtduds" path="res://entities/GroundEnemy.tscn" id="10_tdfso"]
 [ext_resource type="PackedScene" uid="uid://bey7h1nusjbgx" path="res://entities/LevelGoal.tscn" id="11_mvmju"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_baoy2"]
@@ -324,7 +325,7 @@ dino = NodePath("../../Dino")
 visible = false
 
 [node name="Dino" parent="." instance=ExtResource("6_ft2mo")]
-position = Vector2(566.1678, 615.6509)
+position = Vector2(539, 610)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(697, 230)
@@ -463,5 +464,8 @@ tile_set = SubResource("TileSet_l75sy")
 
 [node name="LevelGoal" parent="." instance=ExtResource("11_mvmju")]
 position = Vector2(4436, -340)
+
+[node name="GroundEnemy" parent="." instance=ExtResource("10_tdfso")]
+position = Vector2(1640, -548)
 
 [connection signal="ten_coin_reached" from="Dino" to="HUD/MilkCounter" method="_on_dino_ten_coin_reached"]
