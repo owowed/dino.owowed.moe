@@ -6,6 +6,8 @@ extends Area2D
 @export var vertical_bob_amplitude: float = 8.0
 @export var bob_speed: float = 2.5
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 var _origin: Vector2
 var _direction: int = 1
 var _time: float = 0.0
@@ -16,6 +18,9 @@ func _ready() -> void:
 	_origin = global_position
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
+	if sprite:
+		sprite.play("flying")
+		_update_sprite_direction()
 
 func _physics_process(delta: float) -> void:
 	if _dead:
@@ -28,6 +33,7 @@ func _physics_process(delta: float) -> void:
 		_direction *= -1
 		_travelled = sign(_direction) * overflow
 		step = speed * delta * _direction
+		_update_sprite_direction()
 	global_position.x += step
 	var bob := sin(_time * bob_speed) * vertical_bob_amplitude
 	global_position.y = _origin.y + bob
@@ -56,3 +62,7 @@ func _handle_dino(dino: Dino) -> void:
 func _die() -> void:
 	_dead = true
 	queue_free()
+
+func _update_sprite_direction() -> void:
+	if sprite:
+		sprite.flip_h = _direction > 0

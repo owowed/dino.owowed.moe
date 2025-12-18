@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp7fyhesjb1ib"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_baoy2"]
+rough = true
+bounce = 1.77
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdxyx"]
+
+[node name="Ball" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 3
+mass = 18.25
+physics_material_override = SubResource("PhysicsMaterial_baoy2")
+gravity_scale = 0.5
+freeze_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tdxyx")

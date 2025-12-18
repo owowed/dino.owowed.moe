@@ -1,18 +1,46 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://bkwcdxppyh8io"]
 
-[ext_resource type="Script" path="res://scene_scripts/FlyingEnemy.gd" id="1_xyrbn"]
+[ext_resource type="Script" uid="uid://dn5ki54le7wah" path="res://scene_scripts/FlyingEnemy.gd" id="1_xyrbn"]
+[ext_resource type="Texture2D" uid="uid://dfspjxmra6un4" path="res://assets/bird.png" id="2_h0put"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d22je"]
+atlas = ExtResource("2_h0put")
+region = Rect2(0, 0, 46, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcf0b"]
+atlas = ExtResource("2_h0put")
+region = Rect2(46, 0, 46, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1a7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d22je")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcf0b")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b75tr"]
 size = Vector2(42, 28)
 
 [node name="FlyingEnemy" type="Area2D"]
-collision_layer = 1
-collision_mask = 1
 script = ExtResource("1_xyrbn")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m1a7n")
+animation = &"flying"
+frame_progress = 0.5629323
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.941176, 0.305882, 0.305882, 1)
 polygon = PackedVector2Array(-22, -14, 22, -14, 22, 14, -22, 14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_b75tr")
