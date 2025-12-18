@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bslehltw0q2p6" path="res://entities/Milk.tscn" id="7_su0sb"]
 [ext_resource type="Texture2D" uid="uid://dvyj6fwxasr7w" path="res://assets/terrain.png" id="8_6ujnx"]
 [ext_resource type="PackedScene" uid="uid://cp7fyhesjb1ib" path="res://entities/ball.tscn" id="8_4803k"]
-[ext_resource type="PackedScene" path="res://entities/FlyingEnemy.tscn" id="9_mvmju"]
-[ext_resource type="PackedScene" uid="uid://bavb5s2vtduds" path="res://entities/GroundEnemy.tscn" id="10_tdfso"]
+[ext_resource type="PackedScene" uid="uid://bkwcdxppyh8io" path="res://entities/FlyingEnemy.tscn" id="9_mvmju"]
+[ext_resource type="PackedScene" path="res://entities/FrogEnemy.tscn" id="11_4803k"]
 [ext_resource type="PackedScene" uid="uid://bey7h1nusjbgx" path="res://entities/LevelGoal.tscn" id="11_mvmju"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ra7"]
@@ -349,9 +349,8 @@ tile_set = SubResource("TileSet_l75sy")
 [node name="LevelGoal" parent="." instance=ExtResource("11_mvmju")]
 position = Vector2(4436, -340)
 
-[node name="GroundEnemy" parent="." instance=ExtResource("10_tdfso")]
-position = Vector2(1645, -462)
-target_path = NodePath("../Dino")
+[node name="FrogEnemy" parent="." instance=ExtResource("11_4803k")]
+position = Vector2(383, 484)
 
 [node name="FlyingEnemy" parent="." instance=ExtResource("9_mvmju")]
 position = Vector2(336, -19)

@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ylxdtsus8qsr" path="res://ui/PauseMenu.tscn" id="5_d1bp5"]
 [ext_resource type="PackedScene" uid="uid://bkiplpekmn1do" path="res://ui/winner_menu.tscn" id="6_hc77g"]
 [ext_resource type="PackedScene" uid="uid://cjuwk12hqmbj2" path="res://entities/Dino.tscn" id="7_qw0ug"]
-[ext_resource type="PackedScene" path="res://entities/FlyingEnemy.tscn" id="8_tzlxv"]
-[ext_resource type="PackedScene" uid="uid://bavb5s2vtduds" path="res://entities/GroundEnemy.tscn" id="9_2bstd"]
+[ext_resource type="PackedScene" uid="uid://bkwcdxppyh8io" path="res://entities/FlyingEnemy.tscn" id="8_tzlxv"]
 [ext_resource type="PackedScene" uid="uid://bey7h1nusjbgx" path="res://entities/LevelGoal.tscn" id="9_t0hok"]
+[ext_resource type="PackedScene" uid="uid://c1idp34scugiy" path="res://entities/FrogEnemy.tscn" id="10_a47or"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ix1"]
 size = Vector2(800, 40)
@@ -68,8 +68,8 @@ position = Vector2(320, 120)
 [node name="FlyingEnemy" parent="." instance=ExtResource("8_tzlxv")]
 position = Vector2(200, 120)
 
-[node name="GroundEnemy" parent="." instance=ExtResource("9_2bstd")]
-position = Vector2(255, 141)
-target_path = NodePath("../Dino")
-
 [node name="Milks" type="Node2D" parent="."]
+
+[node name="FrogEnemy" parent="." instance=ExtResource("10_a47or")]
+position = Vector2(-180, 49)
+target_path = NodePath("../Dino")
