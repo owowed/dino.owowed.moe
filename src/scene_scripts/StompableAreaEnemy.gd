@@ -23,7 +23,7 @@ func _handle_dino(dino: Dino) -> void:
 	if crouch_kills and dino.crouching:
 		_die_with_sound()
 		return
-	var stomp := dino.global_position.y < global_position.y - stomp_threshold and dino.velocity.y > 0.0
+	var stomp: bool = dino.global_position.y < global_position.y - stomp_threshold and dino.velocity.y > 0.0
 	if stomp:
 		dino.velocity.y = dino.JUMP_VELOCITY * bounce_multiplier
 		_die_with_sound()

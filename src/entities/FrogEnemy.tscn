@@ -1,7 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1idp34scugiy"]
+[gd_scene load_steps=11 format=3 uid="uid://c1idp34scugiy"]
 
-[ext_resource type="Script" path="res://scene_scripts/FrogEnemy.gd" id="1_ku82x"]
-[ext_resource type="AudioStream" uid="uid://9qkpitqy74cl" path="res://audio/stomp.wav" id="2_ehplh"]
+[ext_resource type="Script" uid="uid://d1r4ht5ycom0i" path="res://scene_scripts/FrogEnemy.gd" id="1_ku82x"]
+[ext_resource type="Texture2D" uid="uid://df4qn20jixlx4" path="res://assets/frog_jump.png" id="2_3svcf"]
+[ext_resource type="AudioStream" uid="uid://dejnbny623bdk" path="res://audio/stomp.wav" id="2_ehplh"]
+[ext_resource type="Texture2D" uid="uid://c7qfanchccctt" path="res://assets/frog.png" id="3_4038m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ap4"]
+atlas = ExtResource("3_4038m")
+region = Rect2(0, 0, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soxtl"]
+atlas = ExtResource("3_4038m")
+region = Rect2(19, 0, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84cjl"]
+atlas = ExtResource("3_4038m")
+region = Rect2(38, 0, 19, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhhhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1ap4")
+}],
+"loop": true,
+"name": &"idling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3svcf")
+}],
+"loop": true,
+"name": &"jump_midair",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1ap4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soxtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84cjl")
+}],
+"loop": true,
+"name": &"jump_prepare",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3vyx"]
 size = Vector2(36, 24)
@@ -13,11 +60,15 @@ size = Vector2(32, 20)
 collision_mask = 2
 script = ExtResource("1_ku82x")
 
-[node name="Sprite" type="Polygon2D" parent="."]
-color = Color(0.333333, 0.568627, 0.956863, 1)
-polygon = PackedVector2Array(-18, -12, 18, -12, 18, 12, -18, 12)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.022059085, -2.1250002)
+scale = Vector2(1.632353, 1.6323528)
+sprite_frames = SubResource("SpriteFrames_jhhhx")
+animation = &"idling"
+frame_progress = 0.5083386
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_e3vyx")
 
 [node name="FloorRayLeft" type="RayCast2D" parent="."]
@@ -34,8 +85,8 @@ collision_mask = 2
 target_position = Vector2(200, 0)
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
-collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_1hhux")
