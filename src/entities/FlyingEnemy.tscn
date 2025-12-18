@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkwcdxppyh8io"]
+[gd_scene load_steps=8 format=3 uid="uid://bkwcdxppyh8io"]
 
 [ext_resource type="Script" uid="uid://dn5ki54le7wah" path="res://scene_scripts/FlyingEnemy.gd" id="1_xyrbn"]
 [ext_resource type="Texture2D" uid="uid://dfspjxmra6un4" path="res://assets/bird.png" id="2_h0put"]
+[ext_resource type="AudioStream" uid="uid://9qkpitqy74cl" path="res://audio/stomp.wav" id="3_bxjls"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d22je"]
 atlas = ExtResource("2_h0put")
@@ -44,3 +45,6 @@ polygon = PackedVector2Array(-22, -14, 22, -14, 22, 14, -22, 14)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_b75tr")
+
+[node name="StompAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bxjls")

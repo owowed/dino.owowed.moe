@@ -1,11 +1,14 @@
-class_name GroundEnemy
-extends CharacterBody2D
+class_name FrogEnemy
+extends StompableBodyEnemy
 
 @export_node_path("Node2D") var target_path: NodePath
-@export var patrol_speed: float = 60.0
-@export var dash_speed: float = 180.0
+@export var hop_speed: float = 120.0
+@export var chase_hop_speed: float = 160.0
 @export var detection_distance: float = 260.0
+@export var close_detection_distance: float = 80.0
 @export var lose_distance: float = 340.0
+@export var hop_interval: float = 1.0
+@export var chase_hop_interval: float = 0.55
 @export var jump_velocity: float = -260.0
 @export var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -18,6 +21,8 @@ var _direction: int = -1
 var _target: Node2D
 var _state: StringName = "patrol"
 var _dead: bool = false
+var _hop_timer: float = 0.0
+var _flip_next_hop: bool = false
 
 func _ready() -> void:
 	_resolve_target()
@@ -41,6 +46,8 @@ func _enable_sight_ray() -> void:
 		sight_ray.collision_mask = 1
 
 func _physics_process(delta: float) -> void:
+	if _dead:
+		return
 	_apply_gravity(delta)
 	_resolve_target()
 	_update_state()
@@ -61,9 +68,11 @@ func _update_state() -> void:
 		return
 	var to_target := _target.global_position - global_position
 	_update_sight_direction()
-	if _has_line_of_sight(to_target) and to_target.length() <= detection_distance:
+	var dist := to_target.length()
+	var can_see := _has_line_of_sight(to_target)
+	if (can_see and dist <= detection_distance) or dist <= close_detection_distance:
 		_state = "chase"
-	elif to_target.length() >= lose_distance:
+	elif dist >= lose_distance:
 		_state = "patrol"
 
 func _handle_turns() -> void:
@@ -72,17 +81,24 @@ func _handle_turns() -> void:
 		_direction *= -1
 
 func _move(delta: float) -> void:
+	_hop_timer = maxf(_hop_timer - delta, 0.0)
 	if _state == "chase" and _target:
 		_direction = sign(_target.global_position.x - global_position.x)
 		if _direction == 0:
 			_direction = 1
-	else:
-		_update_sight_direction()
-	var target_speed := dash_speed if _state == "chase" else patrol_speed
-	velocity.x = _direction * target_speed
-	if _state == "chase" and is_on_floor():
-		velocity.y = jump_velocity
+	var target_speed := hop_speed if _state == "patrol" else chase_hop_speed
+	if is_on_floor() and _hop_timer <= 0.0:
+		if _flip_next_hop or _wall_ahead() or not _ground_ahead():
+			_direction *= -1
+			_flip_next_hop = false
+		else:
+			velocity.y = jump_velocity
+			velocity.x = _direction * target_speed
+			_hop_timer = hop_interval if _state == "patrol" else chase_hop_interval
 	move_and_slide()
+	# If we collided with a wall during the hop, flag a flip for the next hop.
+	if is_on_wall():
+		_flip_next_hop = true
 
 func _update_sight_direction() -> void:
 	if sight_ray:
@@ -91,6 +107,8 @@ func _update_sight_direction() -> void:
 func _has_line_of_sight(to_target: Vector2) -> bool:
 	if sight_ray == null:
 		return false
+	if to_target.x * _direction <= 0:
+		return false
 	sight_ray.target_position = to_target
 	sight_ray.force_raycast_update()
 	if not sight_ray.is_colliding():
@@ -98,26 +116,24 @@ func _has_line_of_sight(to_target: Vector2) -> bool:
 	var collider := sight_ray.get_collider()
 	return collider == _target or (collider is Node and collider.get_parent() == _target)
 
+func _ground_ahead() -> bool:
+	var ray := floor_ray_left if _direction < 0 else floor_ray_right
+	return ray != null and ray.is_colliding()
+
+func _wall_ahead() -> bool:
+	var offset := Vector2(12 * _direction, 0)
+	return test_move(global_transform, offset)
+
 func _on_body_entered(body: Node) -> void:
 	if body is Dino:
-		_handle_dino(body as Dino)
+		_handle_collision(body as Dino)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Dino:
-		_handle_dino(area.get_parent() as Dino)
+		_handle_collision(area.get_parent() as Dino)
 
-func _handle_dino(dino: Dino) -> void:
+func _handle_collision(dino: Dino) -> void:
 	if _dead:
 		return
-	if dino.crouching:
+	if _handle_dino(dino):
 		_dead = true
-		queue_free()
-		return
-	var stomp_threshold := 8.0
-	var stomp := dino.global_position.y < global_position.y - stomp_threshold and dino.velocity.y > 0.0
-	if stomp:
-		_dead = true
-		queue_free()
-		dino.velocity.y = dino.JUMP_VELOCITY * 0.35
-	else:
-		dino.die()

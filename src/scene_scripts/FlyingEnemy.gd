@@ -1,5 +1,5 @@
 class_name FlyingEnemy
-extends Area2D
+extends StompableAreaEnemy
 
 @export var speed: float = 90.0
 @export var travel_distance: float = 220.0
@@ -39,25 +39,16 @@ func _physics_process(delta: float) -> void:
 	global_position.y = _origin.y + bob
 
 func _on_body_entered(body: Node) -> void:
+	if _dead:
+		return
 	if body is Dino:
 		_handle_dino(body as Dino)
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Dino:
-		_handle_dino(area.get_parent() as Dino)
-
-func _handle_dino(dino: Dino) -> void:
 	if _dead:
 		return
-	if dino.crouching:
-		_die()
-		return
-	var hitting_from_above := dino.global_position.y < global_position.y - 4 and dino.velocity.y > 0.0
-	if hitting_from_above:
-		_die()
-		dino.velocity.y = dino.JUMP_VELOCITY * 0.5
-	else:
-		dino.die()
+	if area.get_parent() is Dino:
+		_handle_dino(area.get_parent() as Dino)
 
 func _die() -> void:
 	_dead = true
