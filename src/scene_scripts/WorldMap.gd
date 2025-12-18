@@ -4,7 +4,7 @@ extends Node2D
 @export var level_label: Label
 @export var prompt_label: Label
 @export var prompt_dialog: ConfirmationDialog
-@export var map_bounds := Rect2(-480, -270, 960, 540)
+@export var map_bounds := Rect2(-1080, -270, 2000, 1000)
 
 var _active_node: WorldLevelNode
 var _pending_node: WorldLevelNode
