@@ -17,6 +17,7 @@ extends CharacterBody2D
 var _direction: int = -1
 var _target: Node2D
 var _state: StringName = "patrol"
+var _dead: bool = false
 
 func _ready() -> void:
 	_resolve_target()
@@ -106,11 +107,16 @@ func _on_area_entered(area: Area2D) -> void:
 		_handle_dino(area.get_parent() as Dino)
 
 func _handle_dino(dino: Dino) -> void:
+	if _dead:
+		return
 	if dino.crouching:
+		_dead = true
 		queue_free()
 		return
-	var stomp := dino.global_position.y < global_position.y - 6 and dino.velocity.y > 0.0
+	var stomp_threshold := 8.0
+	var stomp := dino.global_position.y < global_position.y - stomp_threshold and dino.velocity.y > 0.0
 	if stomp:
+		_dead = true
 		queue_free()
 		dino.velocity.y = dino.JUMP_VELOCITY * 0.35
 	else:
