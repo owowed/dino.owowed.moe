@@ -6,7 +6,7 @@ Listing for libraries and its license(s) used by `owowed/dino.owowed.moe`.
 
 ## dino.owowed.moe
 
-**Project Source**
+**Source URLs**
 
 https://github.com/owowed/dino.owowed.moe
 
@@ -20,7 +20,7 @@ Copyright (c) 2023 owowed. [GNU Affero General Public License, Version 3](LICENS
 
 Game Asset, Spritesheet
 
-**Project Source**
+**Source URLs**
 
 - https://www.chromium.org/Home/
 - https://chromium.googlesource.com/chromium/
@@ -29,9 +29,11 @@ Game Asset, Spritesheet
 
 Copyright (c) 2014 The Chromium Authors. [License](LICENSE.CHROMIUM)
 
-**Reference**
+**References**
 
 - `src/assets/spritesheet.png`
+- `src/assets/bird.png`
+- `src/assets/dino.png`
 
 ---
 
@@ -39,7 +41,7 @@ Copyright (c) 2014 The Chromium Authors. [License](LICENSE.CHROMIUM)
 
 Game Asset, Spritesheet
 
-**Project Source**
+**Source URLs**
 
 https://cupnooble.itch.io/sprout-lands-asset-pack
 
@@ -51,7 +53,29 @@ Copyright (c) Cup Nooble. [Free Basic Pack](LICENSE.SLAP)
 
 *This license may restrict commercial usage.*
 
-**Reference**
+**References**
+
+- `src/assets/milk.png`
+
+---
+
+## Mystic Woods
+
+Game Asset, Spritesheet
+
+**Source URLs**
+
+https://game-endeavor.itch.io/mystic-woods
+
+**License**
+
+Copyright (c) Game Endeavor. [License](LICENSE.MYSTIC_WOODS)
+
+**Note**
+
+*This license may restrict commercial usage.*
+
+**References**
 
 - `src/assets/milk.png`
 
@@ -61,7 +85,7 @@ Copyright (c) Cup Nooble. [Free Basic Pack](LICENSE.SLAP)
 
 Font
 
-**Project Source**
+**Source URLs**
 
 https://github.com/googlefonts/silkscreen
 
@@ -69,10 +93,29 @@ https://github.com/googlefonts/silkscreen
 
 Copyright (c) 2001 The Silkscreen Project Authors. [SIL Open Font License, Version 1.1](LICENSE.SILKSCREEN)
 
-**Reference**
+**References**
 
 - `src/fonts/Silkscreen-Bold.ttf`
 - `src/fonts/Silkscreen-Regular.ttf`
+
+---
+
+## Frog
+
+Game asset
+
+**Source URLs**
+
+https://www.spriters-resource.com/pc_computer/cursesnchaos/asset/73541/
+
+**License**
+
+Copyright (c) 2015 Tribute Games Inc. [COPYRIGHT](LICENSE.FROG)
+
+**References**
+
+- `src/assets/frog.png`
+- `src/assets/frog_jump.png`
 
 ---
 
@@ -80,7 +123,7 @@ Copyright (c) 2001 The Silkscreen Project Authors. [SIL Open Font License, Versi
 
 JavaScript Library
 
-**Project Source**
+**Source URLs**
 
 https://github.com/gzuidhof/coi-serviceworker
 
