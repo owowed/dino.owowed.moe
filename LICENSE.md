@@ -27,7 +27,7 @@ Game Asset, Spritesheet
 
 **License**
 
-Copyright (c) 2014 The Chromium Authors. [License](LICENSE.CHROMIUM)
+Copyright (c) 2014 The Chromium Authors. [LICENSE](LICENSE.CHROMIUM)
 
 **References**
 
@@ -69,7 +69,7 @@ https://game-endeavor.itch.io/mystic-woods
 
 **License**
 
-Copyright (c) Game Endeavor. [License](LICENSE.MYSTIC_WOODS)
+Copyright (c) Game Endeavor. [LICENSE](LICENSE.MYSTIC_WOODS)
 
 **Note**
 
